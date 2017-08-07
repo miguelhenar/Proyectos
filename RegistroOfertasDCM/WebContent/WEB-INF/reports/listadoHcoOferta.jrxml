@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listadoOfertas" language="groovy" pageWidth="4200" pageHeight="8000" columnWidth="4160" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="275"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="hiof_codigo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[hiof_codigo]]></fieldDescription>
+	</field>
+	<field name="ofer_campanyaMarketing" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_campanyaMarketing]]></fieldDescription>
+	</field>
+	<field name="ofer_codigo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[ofer_codigo]]></fieldDescription>
+	</field>
+	<field name="ofer_conseguidoGsm" class="java.lang.Double">
+		<fieldDescription><![CDATA[ofer_conseguidoGsm]]></fieldDescription>
+	</field>
+	<field name="ofer_conseguidoIli" class="java.lang.Double">
+		<fieldDescription><![CDATA[ofer_conseguidoIli]]></fieldDescription>
+	</field>
+	<field name="ofer_conseguidoOvl" class="java.lang.Double">
+		<fieldDescription><![CDATA[ofer_conseguidoOvl]]></fieldDescription>
+	</field>
+	<field name="ofer_conseguidoOvs" class="java.lang.Double">
+		<fieldDescription><![CDATA[ofer_conseguidoOvs]]></fieldDescription>
+	</field>
+	<field name="ofer_conseguidoTla" class="java.lang.Double">
+		<fieldDescription><![CDATA[ofer_conseguidoTla]]></fieldDescription>
+	</field>
+	<field name="ofer_cotizadoGsm" class="java.lang.Double">
+		<fieldDescription><![CDATA[ofer_cotizadoGsm]]></fieldDescription>
+	</field>
+	<field name="ofer_cotizadoIli" class="java.lang.Double">
+		<fieldDescription><![CDATA[ofer_cotizadoIli]]></fieldDescription>
+	</field>
+	<field name="ofer_cotizadoOvl" class="java.lang.Double">
+		<fieldDescription><![CDATA[ofer_cotizadoOvl]]></fieldDescription>
+	</field>
+	<field name="ofer_cotizadoOvs" class="java.lang.Double">
+		<fieldDescription><![CDATA[ofer_cotizadoOvs]]></fieldDescription>
+	</field>
+	<field name="ofer_cotizadoTla" class="java.lang.Double">
+		<fieldDescription><![CDATA[ofer_cotizadoTla]]></fieldDescription>
+	</field>
+	<field name="ofer_descripcionServicio" class="java.lang.String">
+		<fieldDescription><![CDATA[ofer_descripcionServicio]]></fieldDescription>
+	</field>
+	<field name="ofer_empresa" class="java.lang.String">
+		<fieldDescription><![CDATA[ofer_empresa]]></fieldDescription>
+	</field>
+	<field name="ofer_esAgente" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_esAgente]]></fieldDescription>
+	</field>
+	<field name="ofer_esCliente" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_esCliente]]></fieldDescription>
+	</field>
+	<field name="ofer_esProspect" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_esProspect]]></fieldDescription>
+	</field>
+	<field name="ofer_fechaRegistro" class="java.util.Date">
+		<fieldDescription><![CDATA[ofer_fechaRegistro]]></fieldDescription>
+	</field>
+	<field name="ofer_fechaTope" class="java.util.Date">
+		<fieldDescription><![CDATA[ofer_fechaTope]]></fieldDescription>
+	</field>
+	<field name="ofer_fechaUltimoEstado" class="java.util.Date">
+		<fieldDescription><![CDATA[ofer_fechaUltimoEstado]]></fieldDescription>
+	</field>
+	<field name="ofer_fuente" class="net.gefco.modelo.Fuente">
+		<fieldDescription><![CDATA[ofer_fuente]]></fieldDescription>
+	</field>
+	<field name="ofer_gefcoSpecial" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_gefcoSpecial]]></fieldDescription>
+	</field>
+	<field name="ofer_gsmTransporte" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_gsmTransporte]]></fieldDescription>
+	</field>
+	<field name="ofer_iliAlmacenaje" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_iliAlmacenaje]]></fieldDescription>
+	</field>
+	<field name="ofer_iliTransporte" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_iliTransporte]]></fieldDescription>
+	</field>
+	<field name="ofer_internacional" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_internacional]]></fieldDescription>
+	</field>
+	<field name="ofer_maduracion" class="net.gefco.modelo.Maduracion">
+		<fieldDescription><![CDATA[ofer_maduracion]]></fieldDescription>
+	</field>
+	<field name="ofer_motivoPerdida" class="net.gefco.modelo.MotivoPerdida">
+		<fieldDescription><![CDATA[ofer_motivoPerdida]]></fieldDescription>
+	</field>
+	<field name="ofer_nacional" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_nacional]]></fieldDescription>
+	</field>
+	<field name="ofer_ovlFtl" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_ovlFtl]]></fieldDescription>
+	</field>
+	<field name="ofer_ovlGrupaje" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_ovlGrupaje]]></fieldDescription>
+	</field>
+	<field name="ofer_ovlLtl" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_ovlLtl]]></fieldDescription>
+	</field>
+	<field name="ofer_ovlMaf" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_ovlMaf]]></fieldDescription>
+	</field>
+	<field name="ofer_ovlXdock" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_ovlXdock]]></fieldDescription>
+	</field>
+	<field name="ofer_ovsAereo" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_ovsAereo]]></fieldDescription>
+	</field>
+	<field name="ofer_ovsFcl" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_ovsFcl]]></fieldDescription>
+	</field>
+	<field name="ofer_ovsFtl" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_ovsFtl]]></fieldDescription>
+	</field>
+	<field name="ofer_ovsGrupaje" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_ovsGrupaje]]></fieldDescription>
+	</field>
+	<field name="ofer_ovsLcl" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_ovsLcl]]></fieldDescription>
+	</field>
+	<field name="ofer_pole" class="net.gefco.modelo.Pole">
+		<fieldDescription><![CDATA[ofer_pole]]></fieldDescription>
+	</field>
+	<field name="ofer_preparacionOferta" class="net.gefco.modelo.PreparacionOferta">
+		<fieldDescription><![CDATA[ofer_preparacionOferta]]></fieldDescription>
+	</field>
+	<field name="ofer_renovadoGsm" class="java.lang.Double">
+		<fieldDescription><![CDATA[ofer_renovadoGsm]]></fieldDescription>
+	</field>
+	<field name="ofer_renovadoIli" class="java.lang.Double">
+		<fieldDescription><![CDATA[ofer_renovadoIli]]></fieldDescription>
+	</field>
+	<field name="ofer_renovadoOvl" class="java.lang.Double">
+		<fieldDescription><![CDATA[ofer_renovadoOvl]]></fieldDescription>
+	</field>
+	<field name="ofer_renovadoOvs" class="java.lang.Double">
+		<fieldDescription><![CDATA[ofer_renovadoOvs]]></fieldDescription>
+	</field>
+	<field name="ofer_renovadoTla" class="java.lang.Double">
+		<fieldDescription><![CDATA[ofer_renovadoTla]]></fieldDescription>
+	</field>
+	<field name="ofer_tipoEmpresa" class="java.lang.String">
+		<fieldDescription><![CDATA[ofer_tipoEmpresa]]></fieldDescription>
+	</field>
+	<field name="ofer_tipoOferta" class="net.gefco.modelo.TipoOferta">
+		<fieldDescription><![CDATA[ofer_tipoOferta]]></fieldDescription>
+	</field>
+	<field name="ofer_tlaPvno" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_tlaPvno]]></fieldDescription>
+	</field>
+	<field name="ofer_tlaTransporte" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[ofer_tlaTransporte]]></fieldDescription>
+	</field>
+	<field name="ofer_usuario" class="net.gefco.modelo.Usuario">
+		<fieldDescription><![CDATA[ofer_usuario]]></fieldDescription>
+	</field>
+	<field name="ofer_oportunidadTogether" class="java.lang.String">
+		<fieldDescription><![CDATA[ofer_oportunidadTogether]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="50" splitType="Stretch">
+			<textField>
+				<reportElement x="98" y="10" width="244" height="20"/>
+				<textElement>
+					<font fontName="Calibri" size="16"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{ofer_codigo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="10" y="10" width="88" height="20" backcolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="Calibri" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OFERTA Nº:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="67" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[F. Registro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="67" y="0" width="175" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gestor cuenta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="242" y="0" width="100" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pole]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="342" y="0" width="194" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empresa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="636" y="0" width="39" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="675" y="0" width="51" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prospect]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="777" y="0" width="60" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nac/Corp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1036" y="0" width="473" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción Servicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1509" y="0" width="109" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fuente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1618" y="0" width="127" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Preparacion Oferta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1745" y="0" width="116" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo Oferta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1861" y="0" width="110" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Maduración]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1971" y="0" width="71" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Últ Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2042" y="0" width="135" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Motivo Pérdida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2177" y="0" width="71" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Tope]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2248" y="0" width="26" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nac.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2274" y="0" width="33" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Intern.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2307" y="0" width="63" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cot. OVL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2433" y="0" width="63" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ren. OVL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2496" y="0" width="63" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cot. OVS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2370" y="0" width="63" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cons. OVL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2559" y="0" width="63" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cons. OVS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2622" y="0" width="63" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ren. OVS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2685" y="0" width="63" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cot. ILI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2748" y="0" width="63" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cons. ILI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2811" y="0" width="63" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ren. ILI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2874" y="0" width="63" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cot.TLA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2937" y="0" width="63" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cons. TLA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3000" y="0" width="63" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ren. TLA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3063" y="0" width="63" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cot. GSM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3126" y="0" width="63" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cons. GSM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3189" y="0" width="63" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ren. GSM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3304" y="0" width="59" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OVL Grup]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3363" y="0" width="52" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OVL LTL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3415" y="0" width="64" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OVL MAF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3479" y="0" width="79" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OVL XDock]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3252" y="0" width="52" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OVL FTL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3558" y="0" width="60" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OVS Aéreo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3618" y="0" width="52" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OVS FCL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3722" y="0" width="64" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OVS Grup]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3786" y="0" width="52" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OVS LCL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3838" y="0" width="52" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ILI Almac]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3888" y="0" width="63" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ILI Transp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3951" y="0" width="68" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TLA PVNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4019" y="0" width="72" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TLA Transp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4091" y="0" width="69" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GSM Transp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="917" y="0" width="119" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Campaña Marketing]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="726" y="0" width="51" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Agente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3670" y="0" width="52" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OVS FTL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="837" y="0" width="80" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gefco Special]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="536" y="0" width="100" height="18" backcolor="#999999"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Oport. Together]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="0" width="67" height="18"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{ofer_fechaRegistro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="67" y="0" width="175" height="18"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{ofer_usuario}.getUsua_nombre()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="242" y="0" width="100" height="18"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ofer_pole}.getPole_nombre()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="0" width="194" height="18"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ofer_empresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="777" y="0" width="60" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ofer_tipoEmpresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="636" y="0" width="39" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_esCliente}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="675" y="0" width="51" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_esProspect}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1036" y="0" width="461" height="18"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ofer_descripcionServicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1509" y="0" width="109" height="18"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{ofer_fuente}.getFuen_nombre()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1618" y="0" width="127" height="18"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{ofer_preparacionOferta}.getProf_equipo()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1745" y="0" width="116" height="18"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{ofer_tipoOferta}.getTiof_nombre()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1861" y="0" width="110" height="18"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{ofer_maduracion}.getMadu_nombre()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="1971" y="0" width="71" height="18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{ofer_fechaUltimoEstado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2042" y="0" width="135" height="18"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{ofer_motivoPerdida}.getMope_nombre()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="2177" y="0" width="71" height="18"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{ofer_fechaTope}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2248" y="0" width="26" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_nacional}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2274" y="0" width="33" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_internacional}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="2307" y="0" width="63" height="18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{ofer_cotizadoOvl}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2433" y="0" width="63" height="18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{ofer_renovadoOvl}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2496" y="0" width="63" height="18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{ofer_cotizadoOvs}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2559" y="0" width="63" height="18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{ofer_conseguidoOvs}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2622" y="0" width="63" height="18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{ofer_renovadoOvs}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2748" y="0" width="63" height="18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{ofer_conseguidoIli}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2811" y="0" width="63" height="18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{ofer_renovadoIli}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2370" y="0" width="63" height="18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{ofer_conseguidoOvl}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2685" y="0" width="63" height="18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{ofer_cotizadoIli}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2874" y="0" width="63" height="18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{ofer_cotizadoTla}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2937" y="0" width="63" height="18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{ofer_conseguidoTla}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3000" y="0" width="63" height="18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{ofer_renovadoTla}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3063" y="0" width="63" height="18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{ofer_cotizadoGsm}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3126" y="0" width="63" height="18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{ofer_conseguidoGsm}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3189" y="0" width="63" height="18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{ofer_renovadoGsm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3304" y="0" width="59" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_ovlGrupaje}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3363" y="0" width="52" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_ovlLtl}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3415" y="0" width="64" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_ovlMaf}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3479" y="0" width="79" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_ovlXdock}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3252" y="0" width="52" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_ovlFtl}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3558" y="0" width="60" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_ovsAereo}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3618" y="0" width="52" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_ovsFcl}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3722" y="0" width="64" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_ovsGrupaje}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3786" y="0" width="52" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_ovsLcl}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3838" y="0" width="52" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_iliAlmacenaje}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3888" y="0" width="63" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_iliTransporte}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3951" y="0" width="68" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_tlaPvno}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4091" y="0" width="69" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_gsmTransporte}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4019" y="0" width="72" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_tlaTransporte}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="917" y="0" width="119" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_campanyaMarketing}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="726" y="0" width="51" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_esAgente}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3670" y="0" width="52" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_ovsFtl}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="837" y="0" width="80" height="18"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ofer_gefcoSpecial}?"X":"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="536" y="0" width="100" height="18"/>
+				<textElement>
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ofer_oportunidadTogether}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="39" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

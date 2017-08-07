@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+ 	xmlns:xi="http://www.w3.org/2001/XInclude"
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
+ 	version="2.1" >
+
+ <navigation-rule>
+		<display-name>fuentes</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>verFuentes</from-outcome>
+			<to-view-id>/seguro/fuentes.jspx</to-view-id>
+		</navigation-case>	
+	</navigation-rule>
+
+
+	<navigation-rule>
+		<display-name>inicial</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>verInicial</from-outcome>
+			<to-view-id>/seguro/inicial.jspx</to-view-id>
+		</navigation-case>	
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>listadoAlertas</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>verListadoAlertas</from-outcome>
+			<to-view-id>/seguro/listadoAlertas.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>	
+
+	<navigation-rule>
+		<display-name>listadoOfertas</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>verListadoOfertas</from-outcome>
+			<to-view-id>/seguro/listadoOfertas.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>	
+	
+	<navigation-rule>
+		<display-name>login</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>verLogin</from-outcome>
+			<to-view-id>/login.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>maduracion</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>verMaduraciones</from-outcome>
+			<to-view-id>/seguro/maduraciones.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+		
+	<navigation-rule>
+		<display-name>motivoPerdida</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>verMotivosPerdida</from-outcome>
+			<to-view-id>/seguro/motivosPerdida.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+		
+	<navigation-rule>
+		<display-name>pole</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>verPoles</from-outcome>
+			<to-view-id>/seguro/poles.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>preparacionOferta</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>verPreparacionesOferta</from-outcome>
+			<to-view-id>/seguro/preparacionesOferta.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>tipoOferta</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>verTiposOferta</from-outcome>
+			<to-view-id>/seguro/tiposOferta.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>uO</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>verUOs</from-outcome>
+			<to-view-id>/seguro/uOs.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+		
+	<navigation-rule>
+		<display-name>usuario</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>verUsuario</from-outcome>
+			<to-view-id>/seguro/usuario.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>usuarios</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>verUsuarios</from-outcome>
+			<to-view-id>/seguro/usuarios.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+		
+	 <application>
+		  <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+		  <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
+			  <locale-config>
+				   <default-locale>es</default-locale>
+				   <supported-locale>es</supported-locale>
+				   <supported-locale>en</supported-locale>
+			  </locale-config>
+		  	<message-bundle>net.gefco.i18n.errores</message-bundle>
+		  	<resource-bundle>
+			  	<base-name>net.gefco.i18n.etiquetas</base-name>
+			   	<var>et</var>
+		  	</resource-bundle>
+	 </application>
+</faces-config>

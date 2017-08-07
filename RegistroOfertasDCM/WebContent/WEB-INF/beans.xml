@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						   http://www.springframework.org/schema/tx
+						   http://www.springframework.org/schema/tx/spring-tx.xsd"
+>
+
+	<!-- PERSISTENCIA -->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/Registro_Ofertas_DCM_DS"/>
+	</bean>	
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="annotatedClasses">
+			<list>
+	 			<value>net.gefco.modelo.Agencia</value>
+	 			<value>net.gefco.modelo.Fuente</value>
+	 			<value>net.gefco.modelo.HistoricoOferta</value>
+	 			<value>net.gefco.modelo.Maduracion</value>
+	 			<value>net.gefco.modelo.MotivoPerdida</value>
+	 			<value>net.gefco.modelo.Oferta</value>		
+				<value>net.gefco.modelo.Pole</value>
+				<value>net.gefco.modelo.PreparacionOferta</value>
+	 			<value>net.gefco.modelo.Rol</value>
+	 			<value>net.gefco.modelo.TipoOferta</value>
+	 			<value>net.gefco.modelo.UO</value>					 			   
+				<value>net.gefco.modelo.Usuario</value>				
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="agenciaDao"
+		class="net.gefco.persistencia.AgenciaDaoHibernateTemplateImplementation">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>	
+	<bean id="fuenteDao"
+		class="net.gefco.persistencia.FuenteDaoHibernateTemplateImplementation">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>	
+	<bean id="historicoOfertaDao"
+		class="net.gefco.persistencia.HistoricoOfertaDaoHibernateTemplateImplementation">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>	
+	<bean id="maduracionDao"
+		class="net.gefco.persistencia.MaduracionDaoHibernateTemplateImplementation">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>	
+	<bean id="motivoPerdidaDao"
+		class="net.gefco.persistencia.MotivoPerdidaDaoHibernateTemplateImplementation">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>	
+	<bean id="ofertaDao"
+		class="net.gefco.persistencia.OfertaDaoHibernateTemplateImplementation">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	<bean id="poleDao"
+		class="net.gefco.persistencia.PoleDaoHibernateTemplateImplementation">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	<bean id="preparacionOfertaDao"
+		class="net.gefco.persistencia.PreparacionOfertaDaoHibernateTemplateImplementation">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>	
+	<bean id="rolDao"
+		class="net.gefco.persistencia.RolDaoHibernateTemplateImplementation">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	<bean id="tipoOfertaDao"
+		class="net.gefco.persistencia.TipoOfertaDaoHibernateTemplateImplementation">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	<bean id="uODao"
+		class="net.gefco.persistencia.UODaoHibernateTemplateImplementation">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>	
+	<bean id="usuarioDao" class="net.gefco.persistencia.UsuarioDaoHibernateTemplateImplementation">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	
+	<!-- TRANSACCIONES -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<tx:annotation-driven />
+
+	<!-- NEGOCIO --> 
+	<bean id="gestorAgencias" class="net.gefco.negocio.GestorAgencias">
+		<property name="agenciaDao" ref="agenciaDao" />
+	</bean>
+	<bean id="gestorAlertas" class="net.gefco.negocio.GestorAlertas">
+		<property name="ofertaDao" ref="ofertaDao" />
+	</bean>
+	<bean id="gestorFuentes" class="net.gefco.negocio.GestorFuentes">
+		<property name="fuenteDao" ref="fuenteDao" />
+	</bean>
+	<bean id="gestorHistoricoOfertas" class="net.gefco.negocio.GestorHistoricoOfertas">
+		<property name="historicoOfertaDao" ref="historicoOfertaDao" />
+	</bean>
+	<bean id="gestorMaduraciones" class="net.gefco.negocio.GestorMaduraciones">
+		<property name="maduracionDao" ref="maduracionDao" />
+	</bean>
+	<bean id="gestorMotivosPerdida" class="net.gefco.negocio.GestorMotivosPerdida">
+		<property name="motivoPerdidaDao" ref="motivoPerdidaDao" />
+	</bean>
+	<bean id="gestorOfertas" class="net.gefco.negocio.GestorOfertas">
+		<property name="ofertaDao" ref="ofertaDao" />
+	</bean>
+	<bean id="gestorPoles" class="net.gefco.negocio.GestorPoles">
+		<property name="poleDao" ref="poleDao" />
+	</bean>
+	<bean id="gestorPreparacionesOferta" class="net.gefco.negocio.GestorPreparacionesOferta">
+		<property name="preparacionOfertaDao" ref="preparacionOfertaDao" />
+	</bean>
+	<bean id="gestorRoles" class="net.gefco.negocio.GestorRoles">
+		<property name="rolDao" ref="rolDao" />
+	</bean> 
+	<bean id="gestorTiposOferta" class="net.gefco.negocio.GestorTiposOferta">
+		<property name="tipoOfertaDao" ref="tipoOfertaDao" />
+	</bean>
+	<bean id="gestorUOs" class="net.gefco.negocio.GestorUOs">
+		<property name="uODao" ref="uODao" />
+	</bean> 
+	<bean id="gestorUsuarios" class="net.gefco.negocio.GestorUsuarios">
+		<property name="usuarioDao" ref="usuarioDao" />
+	</bean>
+
+	<!-- BBEANS -->
+	<bean id="agenciasBB" class="net.gefco.bbean.AgenciasBB" scope="request">
+		<property name="gestorAgencias" ref="gestorAgencias"/>
+		<property name="usuario" ref="usuario"/>
+	</bean>
+	
+	<bean id="CBAlerta" class="net.gefco.modelo.dto.CBAlerta" scope="session"/>
+	
+	<bean id="CBOferta" class="net.gefco.modelo.dto.CBOferta" scope="session"/>
+	
+	<bean id="fechaBB" class="net.gefco.bbean.FechaBB" scope="singleton"/>
+	
+	<bean id="fuente" class="net.gefco.modelo.Fuente" scope="session"/>
+	<bean id="fuentesBB" class="net.gefco.bbean.FuentesBB" scope="request">
+		<property name="fuente" ref="fuente"/>
+		<property name="gestorFuentes" ref="gestorFuentes"/>
+	</bean>	
+	
+	<bean id="historicoOferta" class="net.gefco.modelo.HistoricoOferta" scope="session"/>
+	<bean id="historicoOfertasBB" class="net.gefco.bbean.HistoricoOfertasBB" scope="session">
+		<property name="gestorHistoricoOfertas" ref="gestorHistoricoOfertas"/>
+		<property name="historicoOferta" ref="HistoricoOferta"/>
+	</bean>
+		
+	<bean id="maduracion" class="net.gefco.modelo.Maduracion" scope="session"/>
+	<bean id="maduracionesBB" class="net.gefco.bbean.MaduracionesBB" scope="request">
+		<property name="maduracion" ref="maduracion"/>
+		<property name="gestorMaduraciones" ref="gestorMaduraciones"/>
+	</bean>
+	
+	<bean id="motivoPerdida" class="net.gefco.modelo.MotivoPerdida" scope="session"/>
+	<bean id="motivosPerdidaBB" class="net.gefco.bbean.MotivosPerdidaBB" scope="request">
+		<property name="motivoPerdida" ref="motivoPerdida"/>
+		<property name="gestorMotivosPerdida" ref="gestorMotivosPerdida"/>
+	</bean>
+			
+	<bean id="idiomasBB" class="net.gefco.bbean.IdiomasBB" scope="singleton"/>
+	
+	<bean id="oferta" class="net.gefco.modelo.Oferta" scope="session"/>
+	<bean id="ofertasBB" class="net.gefco.bbean.OfertasBB" scope="session">
+		<property name="usuario" ref="usuario"/>
+		<property name="gestorAlertas" ref="gestorAlertas"/>
+		<property name="gestorOfertas" ref="gestorOfertas"/>
+		<property name="gestorHistoricoOfertas" ref="gestorHistoricoOfertas"/>
+		
+		<property name="oferta" ref="oferta"/>
+		<property name="CBAlerta" ref="CBAlerta"/>		
+		<property name="CBOferta" ref="CBOferta"/>
+	</bean>
+
+	<bean id="permisosMenuBB" class="net.gefco.bbean.PermisosMenuBB" scope="session">
+		<property name="usuario" ref="usuario"/>
+	</bean>
+	
+	<bean id="pole" class="net.gefco.modelo.Pole" scope="session"/>
+	<bean id="polesBB" class="net.gefco.bbean.PolesBB" scope="request">
+		<property name="pole" ref="pole"/>
+		<property name="gestorPoles" ref="gestorPoles"/>
+		<property name="usuario" ref="usuario"/>
+	</bean>	
+	
+	<bean id="preparacionOferta" class="net.gefco.modelo.PreparacionOferta" scope="session"/>
+	<bean id="preparacionesOfertaBB" class="net.gefco.bbean.PreparacionesOfertaBB" scope="request">
+		<property name="preparacionOferta" ref="preparacionOferta"/>
+		<property name="preparacionesOfertaDT" ref="preparacionesOfertaDT"/>
+		<property name="gestorPreparacionesOferta" ref="gestorPreparacionesOferta"/>
+	</bean>
+	
+	<bean id="rolesBB" class="net.gefco.bbean.RolesBB" scope="request">
+		<property name="gestorRoles" ref="gestorRoles"/>
+	</bean>	
+	
+	<bean id="tipoOferta" class="net.gefco.modelo.TipoOferta" scope="session"/>
+	<bean id="tiposOfertaBB" class="net.gefco.bbean.TiposOfertaBB" scope="request">
+		<property name="tipoOferta" ref="tipoOferta"/>		
+		<property name="gestorTiposOferta" ref="gestorTiposOferta"/>
+	</bean>
+	
+	<bean id="uO" class="net.gefco.modelo.UO" scope="session"/>
+	<bean id="uOsBB" class="net.gefco.bbean.UOsBB" scope="request">
+		<property name="uO" ref="uO"/>
+		<property name="gestorUOs" ref="gestorUOs"/>
+	</bean>
+		
+	<bean id="usuario" class="net.gefco.modelo.Usuario" scope="session" />
+	<bean id="usuarioForm" class="net.gefco.modelo.Usuario" scope="session" />
+	<bean id="usuariosBB" class="net.gefco.bbean.UsuariosBB" scope="request">
+		<property name="usuario" ref="usuario"/>		
+		<property name="usuariosDT" ref="usuariosDT"/>
+		<property name="usuarioForm" ref="usuarioForm"/>
+		<property name="gestorPoles" ref="gestorPoles" />
+		<property name="gestorUsuarios" ref="gestorUsuarios" />
+	</bean>
+	
+	<!-- MANEJO DATA TABLE -->
+	<bean id="operadoresDT" class="net.gefco.manejoDataTable.OperadoresDT" scope="session"/>
+	<bean id="preparacionesOfertaDT" class="net.gefco.manejoDataTable.PreparacionesOfertaDT" scope="session"/>
+	<bean id="usuariosDT" class="net.gefco.manejoDataTable.UsuariosDT" scope="session"/>
+</beans>

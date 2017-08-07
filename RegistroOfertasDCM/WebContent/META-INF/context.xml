@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<ResourceLink 
+		global="jdbc/Registro_Ofertas_DCM_DS" 
+		name=  "jdbc/Registro_Ofertas_DCM_DS" 
+		type="javax.sql.DataSource"	/>
+</Context>
