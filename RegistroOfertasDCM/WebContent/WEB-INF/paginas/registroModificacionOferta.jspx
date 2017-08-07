@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:afh="http://xmlns.oracle.com/adf/faces/html" 
+      xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+	  xmlns:a4j="http://richfaces.org/a4j">
+	  
+	
+<head>
+<script type="text/javascript">
+	function calcular(){
+		//alert(formulario:ofer_cotizadoGsm.id);
+		//alert(parseFloat(document.getElementById('formulario:ofer_cotizadoOvl').value == "" ? 0.0 : document.getElementById('formulario:ofer_cotizadoOvl').value));
+		document.getElementById('formulario:ofer_cotizadoTotal').value=( 
+			 parseFloat(document.getElementById('formulario:ofer_cotizadoOvl').value == "" ? 0.0 : document.getElementById('formulario:ofer_cotizadoOvl').value)
+			 + parseFloat(document.getElementById('formulario:ofer_cotizadoOvs').value == "" ? 0.0 : document.getElementById('formulario:ofer_cotizadoOvs').value)
+			 + parseFloat(document.getElementById('formulario:ofer_cotizadoIli').value == "" ? 0.0 : document.getElementById('formulario:ofer_cotizadoIli').value)
+			 + parseFloat(document.getElementById('formulario:ofer_cotizadoTla').value == "" ? 0.0 : document.getElementById('formulario:ofer_cotizadoTla').value)
+			 + parseFloat(document.getElementById('formulario:ofer_cotizadoGsm').value == "" ? 0.0 : document.getElementById('formulario:ofer_cotizadoGsm').value)).toFixed(1);
+		document.getElementById('formulario:ofer_conseguidoTotal').value=( 
+			 parseFloat(document.getElementById('formulario:ofer_conseguidoOvl').value == "" ? 0.0 : document.getElementById('formulario:ofer_conseguidoOvl').value)
+			 + parseFloat(document.getElementById('formulario:ofer_conseguidoOvs').value == "" ? 0.0 : document.getElementById('formulario:ofer_conseguidoOvs').value)
+			 + parseFloat(document.getElementById('formulario:ofer_conseguidoIli').value == "" ? 0.0 : document.getElementById('formulario:ofer_conseguidoIli').value)
+			 + parseFloat(document.getElementById('formulario:ofer_conseguidoTla').value == "" ? 0.0 : document.getElementById('formulario:ofer_conseguidoTla').value)
+			 + parseFloat(document.getElementById('formulario:ofer_conseguidoGsm').value == "" ? 0.0 : document.getElementById('formulario:ofer_conseguidoGsm').value)).toFixed(1);
+
+		document.getElementById('formulario:ofer_renovadoTotal').value=( 
+			 parseFloat(document.getElementById('formulario:ofer_renovadoOvl').value == "" ? 0.0 : document.getElementById('formulario:ofer_renovadoOvl').value)
+			 + parseFloat(document.getElementById('formulario:ofer_renovadoOvs').value == "" ? 0.0 : document.getElementById('formulario:ofer_renovadoOvs').value)
+			 + parseFloat(document.getElementById('formulario:ofer_renovadoIli').value == "" ? 0.0 : document.getElementById('formulario:ofer_renovadoIli').value)
+			 + parseFloat(document.getElementById('formulario:ofer_renovadoTla').value == "" ? 0.0 : document.getElementById('formulario:ofer_renovadoTla').value)
+			 + parseFloat(document.getElementById('formulario:ofer_renovadoGsm').value == "" ? 0.0 : document.getElementById('formulario:ofer_renovadoGsm').value)).toFixed(1);
+		return;		
+		}		
+</script>
+</head>
+		
+<body onload="calcular();">
+	<h:form id="formulario">
+		<!-- Pongo los immediates para que no salten las reglas de validación -->
+		<div style="height: 2px"/>
+		<p class="botonera" align="center">
+			<h:commandButton type="submit" value="#{et.btn_insertar}"  action="#{ofertasBB.insertar}" disabled ="#{ofertasBB.estado!=null || oferta.ofer_codigo!=0 || ofertasBB.usuario.usua_rol.rol_codigo=='VISUALIZACION'}"/>
+			<b>&nbsp;</b>
+			<h:commandButton type="submit" value="#{et.btn_modificar}" action="#{ofertasBB.modificar}" disabled ="#{oferta.ofer_codigo==0 || ofertasBB.usuario.usua_rol.rol_codigo=='VISUALIZACION'}"/>
+			<b>&nbsp;</b>
+			<h:commandButton type="submit" value="#{et.btn_cancelar}" action="#{ofertasBB.cancelar}" disabled ="#{oferta.ofer_codigo==0}" immediate="true"/>
+			<b>&nbsp;</b>
+			<a4j:commandButton type="submit" style="cursor: pointer; font-weight: bold;"
+				value="#{et.btn_eliminar}"
+				immediate="true"
+				action="#{ofertasBB.borrar}"
+				onclick="if (!confirm('#{et.lbl_confirmacionEliminarOferta}')){return false;}">						
+			</a4j:commandButton>
+			
+			<b>&nbsp;</b>
+			<h:commandButton type="submit" value="#{et.btn_vaciar}"  	action="#{ofertasBB.vaciarFormularioOferta}" disabled ="#{oferta.ofer_codigo!=0 || ofertasBB.usuario.usua_rol.rol_codigo=='VISUALIZACION'}" immediate="true"/>
+			<b>&nbsp;</b>		
+			<h:commandButton type="submit" value="#{et.btn_nuevo}" 	action="#{ofertasBB.nuevo}" disabled ="#{oferta.ofer_codigo!=0 || ofertasBB.usuario.usua_rol.rol_codigo=='VISUALIZACION'}" immediate="true"/>	
+		</p>
+				
+		<h:inputHidden id="ofer_fechaRegistro" value="#{oferta.ofer_fechaRegistro}"/>
+		
+		
+		<!-- LAS CLASS son clases que hemos definido en estilos.css -->
+		<table class="tablaFormulario" align="center" border="1">
+			<tr style="visibility: hidden;">
+				<td width="16%"/>
+				<td width="16%"/>
+				<td width="16%"/>
+				<td width="16%"/>
+				<td width="16%"/>
+				<td width="16%"/>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<h:outputLabel for="ofer_codigo" value="#{et.lbl_codigo_oferta}" styleClass="lblTituloCampoFormulario" />
+					<h:inputText id="ofer_codigo" value="#{oferta.ofer_codigo}" readonly="true" styleClass="txtSmall;txtIzquierda"/>
+					<h:message for="ofer_codigo" styleClass="lblMensajeError"/>
+				</td>
+				
+				<td colspan="2">
+					<h:outputLabel value="#{et.lbl_gestorCuenta}" styleClass="lblTituloCampoFormulario"/>					
+					<h:selectOneMenu id="ofer_usuario" value="#{oferta.ofer_usuario.usua_codigo}" styleClass="listaDesplegableMediana" required="true">
+						<f:selectItems value="#{usuariosBB.listaUsuariosSI}"/> 												
+					</h:selectOneMenu>
+					<h:message for="ofer_usuario" styleClass="lblMensajeError"/>
+				</td>
+			
+				<td colspan="2">
+					<h:outputLabel value="#{et.lbl_pole}" styleClass="lblTituloCampoFormulario"/>					
+					<h:selectOneMenu id="ofer_pole" value="#{oferta.ofer_pole.pole_codigo}" styleClass="listaDesplegableMediana" required="true">
+						<f:selectItems value="#{polesBB.listaPolesSI}"/>
+					</h:selectOneMenu>
+					<h:message for="ofer_pole" styleClass="lblMensajeError"/>										
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">  
+					<table width="100%">
+						<tr>
+							<td colspan="3">
+								<h:outputLabel for="ofer_empresa" value="#{et.lbl_empresa}" styleClass="lblTituloCampoFormulario"/>
+								<h:inputText id="ofer_empresa" value="#{oferta.ofer_empresa}" validator="#{ofertasBB.validarEmpresaClienteProspect}" 
+									required="true" styleClass="txtXLarge"/>
+								<h:message for="ofer_empresa" styleClass="lblMensajeError"/>						
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputLabel for="ofer_oportunidadTogether" value="#{et.lbl_oportunidadTogether}" styleClass="lblTituloCampoFormulario"/>
+								<h:inputText id="ofer_oportunidadTogether" value="#{oferta.ofer_oportunidadTogether}"
+									required="false" styleClass="txtSmall;txtIzquierda"/>
+								<h:message for="ofer_oportunidadTogether" styleClass="lblMensajeError"/>						
+							</td>
+						</tr>
+					</table>
+				</td>			
+				<td>
+					<table> 
+						<tr> 
+							<td>
+								<h:outputLabel for="ofer_esCliente" value="#{et.lbl_cliente}" styleClass="lblTituloCampoFormulario"/>
+								<h:selectBooleanCheckbox id="ofer_esCliente" value="#{oferta.ofer_esCliente}" styleClass="sinBorde"/>					
+								<h:message for="ofer_esCliente" styleClass="lblMensajeError"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputLabel for="ofer_esProspect" value="#{et.lbl_prospect}" styleClass="lblTituloCampoFormulario"/>
+								<h:selectBooleanCheckbox id="ofer_esProspect" value="#{oferta.ofer_esProspect}" styleClass="sinBorde"/>					
+								<h:message for="ofer_esProspect" styleClass="lblMensajeError"/>
+							</td>
+					 	</tr>
+					 	<tr> 
+							<td>
+								<h:outputLabel for="ofer_esAgente" value="#{et.lbl_agente}" styleClass="lblTituloCampoFormulario"/>
+								<h:selectBooleanCheckbox id="ofer_esAgente" value="#{oferta.ofer_esAgente}" styleClass="sinBorde"/>					
+								<h:message for="ofer_esAgente" styleClass="lblMensajeError"/>
+							</td>
+					 	</tr>
+					</table>
+				</td>
+				<td colspan="2">
+					<h:outputLabel value="#{et.lbl_ggcc_nac_corp}" styleClass="lblTituloCampoFormulario"/>					
+					<h:selectOneMenu id="ofer_tipoEmpresa" value="#{oferta.ofer_tipoEmpresa}" styleClass="listaDesplegableMediana" required="true">
+						<f:selectItem itemLabel="Seleccione..." itemValue="null"/>
+						<f:selectItem itemLabel="Nacional" itemValue="Nacional"/>
+						<f:selectItem itemLabel="Corporate" itemValue="Corporate"/>
+					</h:selectOneMenu>
+					<h:message for="ofer_pole" styleClass="lblMensajeError"/>
+				</td>			
+			</tr>
+	 		
+			<tr>			
+				<td colspan="6">  
+					<h:outputLabel for="ofer_descripcionServicio" value="#{et.lbl_descripcionServicio}" styleClass="lblTituloCampoFormulario"/>
+					<h:inputTextarea id="ofer_descripcionServicio" validator="#{ofertasBB.validarCampos}" 
+							value="#{oferta.ofer_descripcionServicio}" required="true" styleClass="txtXXLarge"/>
+					<h:message for="ofer_descripcionServicio" styleClass="lblMensajeError"/>
+				</td>
+			</tr>
+			
+			<tr>			
+				<td colspan="2">
+					<h:outputLabel for="ofer_fechaTope" value="#{et.lbl_fecha_tope}" styleClass="lblTituloCampoFormulario"/>
+					<rich:calendar
+	                	id="ofer_fechaTope"  value="#{oferta.ofer_fechaTope}"
+	                    datePattern="dd-MMM-yyyy"
+	                    styleClass="letraSizeSmall letraIzquierda"
+	                    required="true">		                            
+	                </rich:calendar>
+					<h:message for="ofer_fechaTope" styleClass="lblMensajeError"/> 
+				</td>	
+			
+				<td>  
+					<h:outputLabel for="ofer_nacional" value="#{et.lbl_nacional}" styleClass="lblTituloCampoFormulario"/>
+					<h:selectBooleanCheckbox id="ofer_nacional" value="#{oferta.ofer_nacional}" styleClass="sinBorde"/>					
+					<h:message for="ofer_nacional" styleClass="lblMensajeError"/>
+				</td>
+			
+				<td>  
+					<h:outputLabel for="ofer_internacional" value="#{et.lbl_internacional}" styleClass="lblTituloCampoFormulario"/>
+					<h:selectBooleanCheckbox id="ofer_internacional" value="#{oferta.ofer_internacional}" styleClass="sinBorde"/>					
+					<h:message for="ofer_internacional" styleClass="lblMensajeError"/>
+				</td>
+				<td width="100px" >  
+					<h:outputLabel for="ofer_gefcoSpecial" value="#{et.lbl_gefcoSpecial}" styleClass="lblTitulo" style="width:60px;"/>
+					<h:selectBooleanCheckbox id="ofer_gefcoSpecial" value="#{oferta.ofer_gefcoSpecial}" styleClass="sinBorde"/>					
+					<h:message for="ofer_gefcoSpecial" styleClass="lblMensajeError"/>
+				</td>
+				<td>  
+					<h:outputLabel for="ofer_campanyaMarketing" value="#{et.lbl_campanyaMarketing}" styleClass="lblTitulo" style="width:160px"/>
+					<h:selectBooleanCheckbox id="ofer_campanyaMarketing" value="#{oferta.ofer_campanyaMarketing}" styleClass="sinBorde"/>					
+					<h:message for="ofer_campanyaMarketing" styleClass="lblMensajeError"/>
+				</td>
+			</tr>	
+				
+			<tr>
+				<td colspan="2">
+					<h:outputLabel value="#{et.lbl_fuente}" styleClass="lblTituloCampoFormulario"/>					
+					<h:selectOneMenu id="ofer_fuente" value="#{oferta.ofer_fuente.fuen_codigo}" styleClass="listaDesplegableMediana" required="true">
+						<f:selectItems value="#{fuentesBB.listaFuentesSI}"/>
+					</h:selectOneMenu>
+					<h:message for="ofer_fuente" styleClass="lblMensajeError"/>
+				</td>			
+				<td colspan="2">
+					<h:outputLabel value="#{et.lbl_preparacionOferta}" styleClass="lblTitulo" style="width: 160px;"/>					
+					<h:selectOneMenu id="ofer_preparacionOferta" value="#{oferta.ofer_preparacionOferta.prof_codigo}" style="width: 150px" required="true">
+						<f:selectItems value="#{preparacionesOfertaBB.listaPreparacionesOfertaSI}"/>						
+					</h:selectOneMenu>
+					<h:message for="ofer_preparacionOferta" styleClass="lblMensajeError"/>
+				</td>
+				<td colspan="2">
+					<h:outputLabel value="#{et.lbl_tipo}" styleClass="lblTituloCampoFormulario"/>					
+					<h:selectOneMenu id="ofer_tipoOferta" value="#{oferta.ofer_tipoOferta.tiof_codigo}" styleClass="listaDesplegableMediana" required="true">
+						<f:selectItems value="#{tiposOfertaBB.listaTiposOfertaSI}"/>
+					</h:selectOneMenu>
+					<h:message for="ofer_tipoOferta" styleClass="lblMensajeError"/>
+				</td>
+			</tr>						
+		
+			<tr>
+				<td colspan="2">
+					<h:outputLabel value="#{et.lbl_maduracion}" styleClass="lblTituloCampoFormulario"/>					
+					<h:selectOneMenu id="ofer_maduracion" value="#{oferta.ofer_maduracion.madu_codigo}" styleClass="listaDesplegableMediana" required="true">
+						<f:selectItems value="#{maduracionesBB.listaMaduracionesSI}"/>						
+					</h:selectOneMenu>
+					<h:message for="ofer_maduracion" styleClass="lblMensajeError"/>
+				</td>
+			
+				<td colspan="2">
+					<h:outputLabel for="ofer_fechaUltimoEstado" value="#{et.lbl_fecha_ultimo_estado}" styleClass="lblTitulo" style="width: 160px;"/>
+					<rich:calendar
+	                	id="ofer_fechaUltimoEstado"  value="#{oferta.ofer_fechaUltimoEstado}"
+	                    datePattern="dd-MMM-yyyy"
+	                    styleClass="letraSizeSmall letraIzquierda"
+	                    required="true">		                            
+	                </rich:calendar>
+					<h:message for="ofer_fechaUltimoEstado" styleClass="lblMensajeError"/> 
+				</td>	
+			
+				<td colspan="2">
+					<h:outputLabel value="#{et.lbl_motivo_perdida}" styleClass="lblTituloCampoFormulario"/>					
+					<h:selectOneMenu id="ofer_motivoPerdida" value="#{oferta.ofer_motivoPerdida.mope_codigo}" styleClass="listaDesplegableMediana" required="true">
+						<f:selectItems value="#{motivosPerdidaBB.listaMotivosPerdidaSI}"/>						
+					</h:selectOneMenu>
+					<h:message for="ofer_motivoPerdida" styleClass="lblMensajeError"/>
+				</td>
+			</tr>			
+		</table >
+		<p></p>
+		<b>&nbsp;</b>
+		
+		<table class="tablaFormulario" align="center" border="1" width="100%">																									
+			<tr style="visibility: hidden;">
+				<td width="17%"/>
+				<td width="15%"/>
+				<td width="16%"/>
+				<td width="15%"/>
+				<td width="17%"/>
+				<td width="16%"/>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<h:outputLabel value="ESTADO DEL REGISTRO DE LA OFERTA   #{ofertasBB.estado}" styleClass="lblAviso"/>	
+				</td>
+				<td >
+					<h:outputLabel value="#{et.lbl_cotizado}" styleClass="lblTituloTablaMediano"/>
+				</td>
+				<td>
+					<h:outputLabel value="#{et.lbl_conseguido}" styleClass="lblTituloTablaMediano"/>
+				</td>
+				<td>
+					<h:outputLabel value="#{et.lbl_renovado}" styleClass="lblTituloTablaMediano"/>
+				</td>
+			</tr>
+			
+		
+			<tr>
+				<td colspan="3">
+					<table> 
+						<tr>
+							<td  style="background-color:  rgb(112,188,31);" width="315px">
+								<h:outputLabel value="OVL" styleClass="lblTituloTablaGrande"/>
+							</td>
+							<td width="100px"></td>
+							<td width="100px"></td>
+						</tr>
+						
+						<tr> 
+							<td colspan="3">																					
+								<table>
+									<tr>
+										<td>				
+											<h:outputLabel for="ofer_ovlGrupaje" value="#{et.lbl_ovl_grupaje}" styleClass="lblTituloCampoFormularioSmall"/>
+											<h:selectBooleanCheckbox id="ofer_ovlGrupaje" value="#{oferta.ofer_ovlGrupaje}" styleClass="sinBorde"/>					
+											<h:message for="ofer_ovlGrupaje" styleClass="lblMensajeError"/>
+										</td>
+										<td>  
+											<h:outputLabel for="ofer_ovlLtl" value="#{et.lbl_ovl_ltl}" styleClass="lblTituloCampoFormularioSmall65"/>
+											<h:selectBooleanCheckbox id="ofer_ovlLtl" value="#{oferta.ofer_ovlLtl}" styleClass="sinBorde"/>					
+											<h:message for="ofer_ovlLtl" styleClass="lblMensajeError"/>
+										</td>
+										<td>  
+											<h:outputLabel for="ofer_ovlFtl" value="#{et.lbl_ovl_ftl}" styleClass="lblTituloCampoFormularioSmall65"/>
+											<h:selectBooleanCheckbox id="ofer_ovlFtl" value="#{oferta.ofer_ovlFtl}" styleClass="sinBorde"/>					
+											<h:message for="ofer_ovlFtl" styleClass="lblMensajeError"/>
+										</td>									
+										<td>  
+											<h:outputLabel for="ofer_ovlXdock" value="#{et.lbl_ovl_xdock}" styleClass="lblTituloCampoFormularioSmall65"/>
+											<h:selectBooleanCheckbox id="ofer_ovlXdock" value="#{oferta.ofer_ovlXdock}" styleClass="sinBorde"/>					
+											<h:message for="ofer_ovlXdock" styleClass="lblMensajeError"/>
+										</td>									
+										<td>  
+											<h:outputLabel for="ofer_ovlMaf" value="#{et.lbl_ovl_maf}" styleClass="lblTituloCampoFormularioSmall65"/>
+											<h:selectBooleanCheckbox id="ofer_ovlMaf" value="#{oferta.ofer_ovlMaf}" styleClass="sinBorde"/>					
+											<h:message for="ofer_ovlMaf" styleClass="lblMensajeError"/>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>	
+					</table>
+				</td>	
+				<td align="right" style="padding-right: 15px;background-color: white">
+					<h:inputText id="ofer_cotizadoOvl" value="#{oferta.ofer_cotizadoOvl}" style="border: none; font-size: 12pt;" styleClass="txt100SinBordeDerecha" onchange="calcular();"/>						
+					<h:message for="ofer_cotizadoOvl" styleClass="lblMensajeError"/>
+				</td>	
+				<td align="right" style="padding-right: 15px;background-color: white">
+					<h:inputText id="ofer_conseguidoOvl" value="#{oferta.ofer_conseguidoOvl}" style="border: none; font-size: 12pt;" styleClass="txt100SinBordeDerecha" onchange="calcular();"/>
+					<h:message for="ofer_conseguidoOvl" styleClass="lblMensajeError"/>
+				</td>	
+				<td align="right" style="padding-right: 15px;background-color: white">
+					<h:inputText id="ofer_renovadoOvl" value="#{oferta.ofer_renovadoOvl}" style="border: none; font-size: 12pt;" styleClass="txt100SinBordeDerecha" onchange="calcular();"/>					
+					<h:message for="ofer_renovadoOvl" styleClass="lblMensajeError"/>
+				</td>	
+			</tr>
+								
+			<tr>
+				<td colspan="3">
+					<table> 
+						<tr>
+							<td style="background-color: rgb(0,144,146);" width="315px">
+								<h:outputLabel value="OVS" styleClass="lblTituloTablaGrande"/>
+							</td>
+							<td width="100px"></td>
+							<td width="100px"></td>
+						</tr>
+						<tr> 	
+							<td colspan="3">																					
+								<table>
+									<tr>
+										<td width="130px">  
+											<h:outputLabel for="ofer_ovsGrupaje" value="#{et.lbl_ovs_grupaje}" styleClass="lblTitulo" />
+											<h:selectBooleanCheckbox id="ofer_ovsGrupaje" value="#{oferta.ofer_ovsGrupaje}" styleClass="sinBorde"/>					
+											<h:message for="ofer_ovsGrupaje" styleClass="lblMensajeError" />
+										</td>
+									
+										<td>  
+											<h:outputLabel for="ofer_ovsLcl" value="#{et.lbl_ovs_lcl}" styleClass="lblTituloCampoFormularioSmall65"/>
+											<h:selectBooleanCheckbox id="ofer_ovsLcl" value="#{oferta.ofer_ovsLcl}" styleClass="sinBorde"/>					
+											<h:message for="ofer_ovsLcl" styleClass="lblMensajeError"/>
+										</td>
+																	
+										<td>  
+											<h:outputLabel for="ofer_ovsFcl" value="#{et.lbl_ovs_fcl}" styleClass="lblTituloCampoFormularioSmall65"/>
+											<h:selectBooleanCheckbox id="ofer_ovsFcl" value="#{oferta.ofer_ovsFcl}" styleClass="sinBorde"/>					
+											<h:message for="ofer_ovsFcl" styleClass="lblMensajeError"/>
+										</td>
+											
+										<td>  
+											<h:outputLabel for="ofer_ovsFtl" value="#{et.lbl_ovs_ftl}" styleClass="lblTituloCampoFormularioSmall65"/>
+											<h:selectBooleanCheckbox id="ofer_ovsFtl" value="#{oferta.ofer_ovsFtl}" styleClass="sinBorde"/>					
+											<h:message for="ofer_ovsFtl" styleClass="lblMensajeError"/>
+										</td>
+															
+										<td>  
+											<h:outputLabel for="ofer_ovsAereo" value="#{et.lbl_ovs_aereo}" styleClass="lblTituloCampoFormularioSmall65"/>
+											<h:selectBooleanCheckbox id="ofer_ovsAereo" value="#{oferta.ofer_ovsAereo}" styleClass="sinBorde"/>					
+											<h:message for="ofer_ovsAereo" styleClass="lblMensajeError"/>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td align="right" style="padding-right: 15px;background-color: white">
+					<h:inputText id="ofer_cotizadoOvs" value="#{oferta.ofer_cotizadoOvs}" style="border: none; font-size: 12pt;" styleClass="txt100SinBordeDerecha" onchange="calcular();"/>
+					<h:message for="ofer_cotizadoOvs" styleClass="lblMensajeError"/>
+				</td>	
+				<td align="right" style="padding-right: 15px;background-color: white">
+					<h:inputText id="ofer_conseguidoOvs" value="#{oferta.ofer_conseguidoOvs}" style="border: none; font-size: 12pt;" styleClass="txt100SinBordeDerecha" onchange="calcular();"/>
+					<h:message for="ofer_conseguidoOvs" styleClass="lblMensajeError"/>
+				</td>	
+				<td align="right" style="padding-right: 15px;background-color: white">
+					<h:inputText id="ofer_renovadoOvs" value="#{oferta.ofer_renovadoOvs}" style="border: none; font-size: 12pt;" styleClass="txt100SinBordeDerecha" onchange="calcular();"/>								
+					<h:message for="ofer_renovadoOvs" styleClass="lblMensajeError"/>
+				</td>				
+			</tr>
+											
+			<tr>
+				<td colspan="3">
+					<table>
+						<tr>
+							<td colspan="3" style="background-color: rgb(164,0,29)" width="315px">
+								<h:outputLabel value="ILI" styleClass="lblTituloTablaGrande"/>
+							</td>			
+						</tr>	 
+						<tr> 
+							<td>  
+								<h:outputLabel for="ofer_iliAlmacenaje" value="#{et.lbl_ili_almacenaje}" styleClass="lblTituloCampoFormulario"/>
+								<h:selectBooleanCheckbox id="ofer_iliAlmacenaje" value="#{oferta.ofer_iliAlmacenaje}" styleClass="sinBorde"/>					
+								<h:message for="ofer_iliAlmacenaje" styleClass="lblMensajeError"/>
+							</td>			
+							<td>  
+								<h:outputLabel for="ofer_iliTransporte" value="#{et.lbl_ili_transporte}" styleClass="lblTituloCampoFormulario"/>
+								<h:selectBooleanCheckbox id="ofer_iliTransporte" value="#{oferta.ofer_iliTransporte}" styleClass="sinBorde"/>					
+								<h:message for="ofer_iliTransporte" styleClass="lblMensajeError"/>
+							</td>							
+						</tr>
+					</table>
+				</td>
+				<td align="right" style="padding-right: 15px;background-color: white">
+					<h:inputText id="ofer_cotizadoIli" value="#{oferta.ofer_cotizadoIli}" style="border: none; font-size: 12pt;" styleClass="txt100SinBordeDerecha" onchange="calcular();"/>								
+					<h:message for="ofer_cotizadoIli" styleClass="lblMensajeError"/>
+				</td>	
+				<td align="right" style="padding-right: 15px;background-color: white">
+					<h:inputText id="ofer_conseguidoIli" value="#{oferta.ofer_conseguidoIli}" style="border: none; font-size: 12pt;" styleClass="txt100SinBordeDerecha" onchange="calcular();"/>								
+					<h:message for="ofer_conseguidoIli" styleClass="lblMensajeError"/>
+				</td>
+				<td align="right" style="padding-right: 15px;background-color: white">
+					<h:inputText id="ofer_renovadoIli" value="#{oferta.ofer_renovadoIli}" style="border: none; font-size: 12pt;" styleClass="txt100SinBordeDerecha" onchange="calcular();"/>								
+					<h:message for="ofer_renovadoIli" styleClass="lblMensajeError"/>
+				</td>	
+			</tr>				
+			
+			<tr>
+				<td colspan="3">				
+					<table> 
+						<tr>	
+							<td colspan="3" style="background-color: rgb(232,81,0)" width="315px">
+								<h:outputLabel value="TLA" styleClass="lblTituloTablaGrande"/>
+							</td>
+						</tr>
+						<tr>
+							<td>  
+								<h:outputLabel for="ofer_tlaTransporte" value="#{et.lbl_tla_transporte}" styleClass="lblTituloCampoFormulario"/>
+								<h:selectBooleanCheckbox id="ofer_tlaTransporte" value="#{oferta.ofer_tlaTransporte}" styleClass="sinBorde"/>					
+								<h:message for="ofer_tlaTransporte" styleClass="lblMensajeError"/>
+							</td>
+						
+							<td>  
+								<h:outputLabel for="ofer_tlaPvno" value="#{et.lbl_tla_pvno}" styleClass="lblTituloCampoFormulario"/>
+								<h:selectBooleanCheckbox id="ofer_tlaPvno" value="#{oferta.ofer_tlaPvno}" styleClass="sinBorde"/>					
+								<h:message for="ofer_tlaPvno" styleClass="lblMensajeError"/>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td align="right" style="padding-right: 15px;background-color: white">
+					<h:inputText id="ofer_cotizadoTla" value="#{oferta.ofer_cotizadoTla}" style="border: none; font-size: 12pt;" styleClass="txt100SinBordeDerecha" onchange="calcular();"/>								
+					<h:message for="ofer_cotizadoTla" styleClass="lblMensajeError"/>
+				</td>
+				<td align="right" style="padding-right: 15px;background-color: white">
+					<h:inputText id="ofer_conseguidoTla" value="#{oferta.ofer_conseguidoTla}" style="border: none; font-size: 12pt;" styleClass="txt100SinBordeDerecha" onchange="calcular();"/>								
+					<h:message for="ofer_conseguidoTla" styleClass="lblMensajeError"/>
+				</td>	
+				<td align="right" style="padding-right: 15px;background-color: white">
+					<h:inputText id="ofer_renovadoTla" value="#{oferta.ofer_renovadoTla}" style="border: none; font-size: 12pt;" styleClass="txt100SinBordeDerecha" onchange="calcular();"/>								
+					<h:message for="ofer_renovadoTla" styleClass="lblMensajeError"/>
+				</td>					
+			</tr>																								
+						
+			<tr>
+				<td colspan="3">
+					<table> 	
+						<tr>
+							<td colspan="3" style="background-color: rgb(3,74,94)" width="315px">
+								<h:outputLabel value="GSM" styleClass="lblTituloTablaGrande"/>
+							</td>		
+						</tr>																								
+						<tr>
+							<td>  
+								<h:outputLabel for="ofer_gsmTransporte" value="#{et.lbl_gsm_transporte}" styleClass="lblTituloCampoFormulario"/>
+								<h:selectBooleanCheckbox id="ofer_gsmTransporte" value="#{oferta.ofer_gsmTransporte}" styleClass="sinBorde"/>					
+								<h:message for="ofer_gsmTransporte" styleClass="lblMensajeError"/>
+							</td>
+						</tr>
+					</table>
+				</td>					
+				<td align="right" style="padding-right: 15px;background-color: white">
+					<h:inputText id="ofer_cotizadoGsm" value="#{oferta.ofer_cotizadoGsm}" style="border: none; font-size: 12pt;" styleClass="txt100SinBordeDerecha" onchange="calcular();"/>								
+					<h:message for="ofer_cotizadoGsm" styleClass="lblMensajeError"/>
+				</td>	
+				<td align="right" style="padding-right: 15px;background-color: white">
+					<h:inputText id="ofer_conseguidoGsm" value="#{oferta.ofer_conseguidoGsm}" style="border: none; font-size: 12pt;" styleClass="txt100SinBordeDerecha" onchange="calcular();"/>								
+					<h:message for="ofer_conseguidoGsm" styleClass="lblMensajeError"/>
+				</td>
+				<td align="right" style="padding-right: 15px;background-color: white">
+					<h:inputText id="ofer_renovadoGsm" value="#{oferta.ofer_renovadoGsm}" style="border: none; font-size: 12pt;" styleClass="txt100SinBordeDerecha" onchange="calcular();"/>								
+					<h:message for="ofer_renovadoGsm" styleClass="lblMensajeError"/>
+				</td>	
+			</tr>
+			<tr class="fondoFilaTotal" >				
+				<td colspan="3" align="right" >					 
+					<h:outputLabel value="#{et.lbl_total}" styleClass="lblPieTablaGrande"/>
+				</td>					
+				<td align="right" >
+					<h:inputText id="ofer_cotizadoTotal"  readonly="true" styleClass="cajaTextoTotal" style="width: 150px;"/>
+					
+				</td>	
+				<td align="right" >
+					<h:inputText id="ofer_conseguidoTotal"  readonly="true" styleClass="cajaTextoTotal" style="width: 150px;"/>
+				</td>
+				<td align="right" >
+					<h:inputText id="ofer_renovadoTotal"  readonly="true" styleClass="cajaTextoTotal" style="width: 150px;"/>
+				</td>	
+			</tr>
+		</table>
+		
+		<b>&nbsp;</b>
+	</h:form>
+</body>      
+</html>

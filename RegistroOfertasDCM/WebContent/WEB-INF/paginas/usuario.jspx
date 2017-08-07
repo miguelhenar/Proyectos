@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:t="http://myfaces.apache.org/tomahawk">  
+
+<body> 
+	<h:form  id="formulario">
+		<div style="height: 2px"/>		
+		<h:inputHidden id="usua_codigo" value="#{usuario.usua_codigo}"/>
+		
+		
+		<!-- LAS CLASS son clases que hemos definido en estilos.css -->
+		<table class="tablaFormulario" align="center" style="border-color: black;border-style: double; border-width: 1">		
+			<tr><td colspan="7" height="20px"/></tr>	
+			<tr>
+				<td colspan="3">
+					<h:outputLabel for="usua_login" value="#{et.lbl_login}" styleClass="lblTituloCampoFormulario" />
+					<h:inputText id="usua_login" value="#{usuario.usua_login}" readonly="true" styleClass="txtMediano"/>
+					<h:message for="usua_login" styleClass="lblMensajeError"/>
+				</td>
+				
+				<td colspan="3">
+					<h:outputLabel for="usua_nombre" value="#{et.lbl_nombre}" styleClass="lblTituloCampoFormulario" />
+					<h:inputText id="usua_nombre" value="#{usuario.usua_nombre}" readonly="false" styleClass="txtMediano"/>
+					<h:message for="usua_nombre" styleClass="lblMensajeError"/>
+				</td>
+				<td width="40px"/>
+			</tr>			
+			<tr><td colspan="6" height="10px"/></tr>	
+			<tr>
+				<td colspan="3">
+					<h:outputLabel for="usua_pw" value="#{et.lbl_password}" styleClass="lblTituloCampoFormulario" />
+					<h:inputText id="usua_pw" value="#{usuario.usua_pw}" readonly="false" styleClass="txtMediano"/>
+					<h:message for="usua_pw" styleClass="lblMensajeError"/>
+				</td>
+				<td colspan="3">
+					<h:outputLabel value="#{et.lbl_idioma}" styleClass="lblTituloCampoFormulario"/>					
+					<h:selectOneMenu id="usua_idioma" value="#{usuario.usua_idioma}" styleClass="listaDesplegableSmall" required="true">
+						<f:selectItem itemLabel="Español" itemValue="ES"/>
+						<f:selectItem itemLabel="English" itemValue="EN"/>
+					</h:selectOneMenu>
+					<h:message for="usua_idioma" styleClass="lblMensajeError"/>
+				</td>
+			</tr>
+			<tr><td colspan="6" height="10px"/></tr>
+			<tr>
+				<td colspan="3">
+					<h:outputLabel for="usua_responsable" value="#{et.lbl_manager}" styleClass="lblTituloCampoFormulario" />					
+					<h:selectOneMenu id="usua_responsable" value="#{usuario.usua_responsable}" readonly="true" styleClass="listaDesplegableMediana">
+						<f:selectItems value="#{usuariosBB.listaResponsablesSI}"/>
+					</h:selectOneMenu>
+					<h:message for="usua_responsable" styleClass="lblMensajeError"/>							
+				</td>		
+				<td colspan="3">
+					<h:outputLabel for="usua_rol" value="#{et.lbl_rol}" styleClass="lblTituloCampoFormulario" />
+					<h:inputText id="usua_rol" value="#{usuario.usua_rol.rol_descripcion}" readonly="true" styleClass="txtMediano"/>
+					<h:message for="usua_rol" styleClass="lblMensajeError"/>
+				</td>
+			</tr>
+			<tr><td colspan="6" height="10px"/></tr>
+			<tr>
+				<td colspan="3">
+					<h:outputLabel for="usua_agencia" value="#{et.lbl_agencia}" styleClass="lblTituloCampoFormulario" />
+					<h:inputText id="usua_agencia" value="#{usuario.usua_agencia.agen_nombre}" readonly="true" styleClass="txtMediano"/>
+					<h:message for="usua_agencia" styleClass="lblMensajeError"/>
+				</td>
+				<td colspan="3">
+					<h:outputLabel for="usua_dias_alerta" value="#{et.lbl_dias_alerta}" styleClass="lblTituloCampoFormulario" />
+					<h:inputText id="usua_dias_alerta" value="#{usuario.usua_dias_alerta}" readonly="false" styleClass="txtSmall"/>
+					<h:message for="usua_dias_alerta" styleClass="lblMensajeError"/>
+				</td>	
+			</tr>
+			<tr><td colspan="6" height="20px"/></tr>
+			<tr>
+				<td colspan="5"></td>
+				<td colspan="2">
+					<p class="botonera" align="center">
+					<b>&nbsp;</b>
+					<h:commandButton type="submit" value="#{et.btn_guardar}" action="#{usuariosBB.modificar}" styleClass="boton" disabled ="false"/>
+					<b>&nbsp;</b>
+					</p>
+				</td>
+			</tr>
+			<tr><td colspan="6" height="20px"/></tr>
+		</table >
+	</h:form>
+</body>      
+</html>

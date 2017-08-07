@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"  
+      xmlns:t="http://myfaces.apache.org/tomahawk"> 
+<body>      
+	<h:form >
+		<!-- LAS CLASS son clases que hemos definido en estilos.css -->
+		<div style="height: 5px"/>
+		<table class="tablaFormulario" width="100%" style="border-color: black;border-style: double; border-width: 1">
+			<tr>
+				<td colspan="2"></td>
+				<td align="right">
+				<h:commandButton type="submit" value="#{et.btn_buscar}"/>
+				</td>
+				<td>
+				<h:commandButton type="submit" value="#{et.btn_vaciar}" action="#{ofertasBB.vaciarCBAlerta}"  immediate="true"/>
+				</td>
+				<td colspan="2"></td>
+			</tr>
+			<tr style="height: 50px">
+				<td>
+					<h:outputLabel value="#{et.lbl_oferta}" styleClass="lblTituloCampoFormularioSmall"/>
+					<h:inputText id="cod_oferta" value="#{CBAlerta.codigo}" styleClass="txtSmall">
+					</h:inputText>
+					<h:message for="cod_oferta" styleClass="lblMensajeError"/>
+				</td>
+				<td>
+					<h:outputLabel value="#{et.lbl_pole}" styleClass="lblTituloCampoFormularioSmall"/>					
+					<h:selectOneMenu id="pole" value="#{CBAlerta.pole.pole_codigo}" styleClass="listaDesplegableSmall">
+						<f:selectItems value="#{polesBB.listaPolesSI}"/>
+					</h:selectOneMenu>
+					<h:message for="pole" styleClass="lblMensajeError"/>
+				</td>	
+				<td colspan="2">
+					<h:outputLabel value="#{et.lbl_empresa}" styleClass="lblTituloCampoFormularioSmall"/>
+					<h:inputText id="empresa" value="#{CBAlerta.empresa}" styleClass="txtMediano">
+					</h:inputText>
+					<h:message for="empresa" styleClass="lblMensajeError"/>
+				</td>
+				<td>
+					<h:outputLabel for="fechaUltimoEstadoI" value="#{et.lbl_fecha_ultimo_estado_desde}" styleClass="lblTituloCampoFormularioSmall"/>
+					<h:inputText id="fechaUltimoEstadoI" value="#{CBAlerta.fechaUltimoEstadoI}" styleClass="txtSmall">
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:inputText>
+					<h:message for="fechaUltimoEstadoI" styleClass="lblMensajeError"/>
+				</td>			
+				<td>
+					<h:outputLabel for="fechaUltimoEstadoF" value="#{et.lbl_hasta}" styleClass="lblTituloCampoFormularioSmall"/>
+					<h:inputText id="fechaUltimoEstadoF" value="#{CBAlerta.fechaUltimoEstadoF}" styleClass="txtSmall">
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:inputText>
+					<h:message for="fechaUltimoEstadoF" styleClass="lblMensajeError"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<h:outputLabel value="#{et.lbl_maduracion}" styleClass="lblTituloCampoFormularioSmall"/>					
+					<h:selectOneMenu id="maduracion" value="#{CBAlerta.maduracion.madu_codigo}" styleClass="listaDesplegableMediana">
+						<f:selectItems value="#{maduracionesBB.listaMaduracionesSI}"/>
+					</h:selectOneMenu>
+					<h:message for="maduracion" styleClass="lblMensajeError"/>
+				</td>				
+				<td colspan="2">
+					<h:outputLabel value="#{et.lbl_gestor}" styleClass="lblTituloCampoFormularioSmall"/>					
+					<h:selectOneMenu id="usuario" value="#{CBAlerta.usuario.usua_codigo}" styleClass="listaDesplegableMediana">
+						<f:selectItems value="#{usuariosBB.listaUsuariosSI}"/>
+					</h:selectOneMenu>
+					<h:message for="usuario" styleClass="lblMensajeError"/>
+				</td>
+				<td colspan="2">
+					<h:outputLabel value="#{et.lbl_tipo}" styleClass="lblTituloCampoFormularioSmall"/>					
+					<h:selectOneMenu id="tipoOferta" value="#{CBAlerta.tipoOferta.tiof_codigo}" styleClass="listaDesplegableMediana">
+						<f:selectItems value="#{tiposOfertaBB.listaTiposOfertaSI}"/>
+					</h:selectOneMenu>
+					<h:message for="tipoOferta" styleClass="lblMensajeError"/>
+				</td>				
+			</tr>
+			<tr style="height: 15px"></tr>										
+		</table>
+		<table cellpadding="0" cellspacing="0" width="100%" style="height: 15px">
+			<tr><td></td></tr>
+		</table>
+	
+		<t:dataTable id="tablaBusqueda" align="Center" value="#{ofertasBB.listaAlertas}" var="o" rows="18"
+				rowClasses="oddRowColor, evenRowColor" styleClass="altRowsTable">
+			<t:column styleClass="letraSizeSmall ancho65px">
+				<f:facet name="header">
+					<t:outputText value=""/>
+				</f:facet>
+				<h:commandLink value="#{et.lbl_modificar}" action="#{ofertasBB.seleccionarAlerta}">
+					<f:setPropertyActionListener value="#{o.ofer_codigo}" target="#{oferta.ofer_codigo}"/> 
+				</h:commandLink>
+			</t:column>
+			<t:column styleClass="letraSizeSmall ancho65px">
+				<f:facet name="header">
+					<t:outputText value="#{et.lbl_oferta}"/>
+				</f:facet>	
+				<t:outputText value="#{o.ofer_codigo}"/>
+			</t:column>			
+			<t:column styleClass="letraSizeSmall ancho80px">
+				<f:facet name="header">
+					<t:outputText value="#{et.lbl_fecha_tope}"/>
+				</f:facet>	
+				<h:outputText value="#{o.ofer_fechaTopeConFormato}">
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+1"/>						
+				</h:outputText>
+			</t:column>	
+			<t:column styleClass="letraSizeSmall ancho250px">
+				<f:facet name="header">
+					<t:outputText value="#{et.lbl_empresa}"/>
+				</f:facet>	
+				<t:outputText value="#{o.ofer_empresa}"/>
+			</t:column>
+			<t:column styleClass="letraSizeSmall ancho125px">
+				<f:facet name="header">
+					<t:outputText value="#{et.lbl_maduracion}"/>
+				</f:facet>	
+				<t:outputText value="#{o.ofer_maduracion.madu_nombre}"/>
+			</t:column>
+			<t:column styleClass="letraSizeSmall ancho80px">
+				<f:facet name="header">
+					<t:outputText value="#{et.lbl_ultimo_estado}"/>
+				</f:facet>	
+				<h:outputText value="#{o.ofer_fechaUltimoEstadoConFormato}">
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+1"/>						
+				</h:outputText>
+			</t:column>		
+			<t:column styleClass="letraSizeSmall ancho125px">
+				<f:facet name="header">
+					<t:outputText value="#{et.lbl_tipo}"/>
+				</f:facet>	
+				<t:outputText value="#{o.ofer_tipoOferta.tiof_nombre}"/>
+			</t:column>
+			<t:column styleClass="letraSizeSmall ancho125px">
+				<f:facet name="header">
+					<t:outputText value="#{et.lbl_gestorCuenta}"/>
+				</f:facet>	
+				<t:outputText value="#{o.ofer_usuario.usua_nombre}"/>
+			</t:column>
+			<t:column styleClass="letraSizeSmall ancho65px">
+				<f:facet name="header">
+					<t:outputText value="#{et.lbl_pole}"/>
+				</f:facet>	
+				<t:outputText value="#{o.ofer_pole.pole_nombre}"/>
+			</t:column>								
+		</t:dataTable>		
+		<h:panelGroup style="display: block; text-align: center;">
+		<t:dataScroller id="scroll_1"
+          for="tablaBusqueda"
+          fastStep="10"
+          pageCountVar="pageCount"
+          pageIndexVar="pageIndex"
+          styleClass="scroller"
+          paginator="true"
+          paginatorMaxPages="9"
+          paginatorTableClass="paginator"
+          paginatorActiveColumnStyle="font-weight:bold;">
+          <f:facet name="first" >
+            <t:graphicImage url="/seguro/imagenes/FlechaPrimeroFondoGris.gif" border="0" />
+          </f:facet>
+          <f:facet name="last">
+            <t:graphicImage url="/seguro/imagenes/FlechaUltimoFondoGris.gif" border="0" />
+          </f:facet>
+          <f:facet name="previous">
+            <t:graphicImage url="/seguro/imagenes/FlechaAnteriorFondoGris.gif" border="0" />
+          </f:facet>
+          <f:facet name="next">
+            <t:graphicImage url="/seguro/imagenes/FlechaSiguienteFondoGris.gif" border="0" />
+          </f:facet>
+          <f:facet name="fastforward">
+            <t:graphicImage url="/seguro/imagenes/FlechaSiguienteRapidoFondoGris.gif" border="0" />
+          </f:facet>
+          <f:facet name="fastrewind">
+            <t:graphicImage url="/seguro/imagenes/FlechaAnteriorRapidoFondoGris.gif" border="0" />
+          </f:facet>
+        </t:dataScroller>
+        <t:dataScroller id="scroll_2"
+            for="tablaBusqueda"
+            rowsCountVar="rowsCount"
+            displayedRowsCountVar="displayedRowsCountVar"
+            firstRowIndexVar="firstRowIndex"
+            lastRowIndexVar="lastRowIndex"
+            pageCountVar="pageCount"
+            pageIndexVar="pageIndex">
+            <h:outputFormat value="#{rowsCount} elementos, Página:#{pageIndex} de #{pageCount}" styleClass="standard" >
+              <f:param value="#{rowsCount}" />
+              <f:param value="#{displayedRowsCountVar}" />
+              <f:param value="#{firstRowIndex}" />
+              <f:param value="#{lastRowIndex}" />
+              <f:param value="#{pageIndex}" />
+              <f:param value="Total: #{pageCount} páginas" />
+            </h:outputFormat>
+        </t:dataScroller>    
+		</h:panelGroup>
+	</h:form>
+</body>      
+</html>

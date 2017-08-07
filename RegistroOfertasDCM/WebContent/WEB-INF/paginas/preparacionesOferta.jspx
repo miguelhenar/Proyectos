@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:rich="http://richfaces.org/rich"
+	  xmlns:a4j="http://richfaces.org/a4j">
+<head>
+	<script type="text/javascript" language="javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/manejoTablas.js">  </script>	
+</head>	
+<body onload="colorearTabla('tablaBusqueda','formulario:id')">
+
+
+	<!-- TABLA CON RICH FACES		 -->
+	<h:form id="formulario">
+		<table align="center">			
+			<tr> 
+				<td>
+					<h:commandLink id="nuevaPreparacionOferta" value="#{et.lbl_crear}" action="#{preparacionesOfertaBB.nuevo}" style="width: 0px;"/>
+				</td>
+			</tr>
+			<tr>
+	     		<td>							
+					<h:panelGrid columns="1" columnClasses="top" width="100%" styleClass="alineacionCentro">
+			    		<rich:extendedDataTable 
+			            	value="#{preparacionesOfertaBB.listaPreparacionesOferta}" var="po" id="tablaBusqueda" rows="15" reRender="ds"
+			                width="275px" height="500px"  sortMode="single" selectionMode="single" rowClasses="oddRowColor, evenRowColor" 
+			                tableState="#{preparacionesOfertaDT.tableState}" selection="#{preparacionesOfertaDT.selection}">
+			                
+			                <rich:column sortable="false" id="col_modificar" width="50px"  >
+								<a4j:commandButton styleClass="sinBorde alto25 ancho25px alineacionCentro"  image="/seguro/imagenes/modificar.png"
+									style="cursor: pointer" action="#{preparacionesOfertaBB.seleccionar}">
+									<f:setPropertyActionListener value="#{po.prof_codigo}" target="#{preparacionOferta.prof_codigo}"/>					
+								</a4j:commandButton>
+			           		</rich:column>
+			               				               		               	
+			               	<rich:column sortable="true" id="col_equipo" width="150px"
+			               		filterMethod="#{preparacionesOfertaDT.filtrarListado}" styleClass="letraSizeXSmall letraColorNavy"
+			                	label="#{et.lbl_equipo}">
+			                   	<f:facet name="header">
+			                    	<h:outputText value="#{et.lbl_equipo}" id="lbl_equipo"/>
+			                   	</f:facet>
+			                   	<h:outputText value="#{po.prof_equipo}" id="tive_nombre" styleClass="letraNegrita"/>
+			               	</rich:column>
+			               	
+			               	<rich:column sortable="false" id="col_uo" width="50px"
+			               		filterMethod="#{preparacionesOfertaDT.filtrarListado}" styleClass="letraSizeXSmall letraColorNavy"
+			                	label="#{et.lbl_uO}">
+			                   	<f:facet name="header">
+			                    	<h:outputText value="#{et.lbl_uO}" id="lbl_uO"/>
+			                   	</f:facet>
+			                   	<h:outputText value="#{po.uo.uO_nombre}" id="uO_nombre" styleClass="letraNegrita"/>
+			               	</rich:column>
+			               	<f:facet name="footer">
+			                	<rich:datascroller id="ds" renderIfSinglePage="false" ajaxSingle="false"/>
+			            	</f:facet>	
+			            </rich:extendedDataTable>
+			    	</h:panelGrid>
+    			</td>
+    		</tr>
+    	</table>		
+	</h:form> 
+	
+	<rich:modalPanel id="panelEdicion" styleClass="panelEmergente" autosized="true" showWhenRendered="#{preparacionesOfertaDT.panelVisible=='panelEdicion'}">
+	<f:facet name="header">
+		<h:outputText value="#{et.lbl_editar}"/>
+    </f:facet>		
+	<!--<f:facet name="controls"> -->
+    <!--        <span style="cursor:pointer" onclick="javascript:Richfaces.hideModalPanel('panelEdicion')">X</span> -->
+    <!--</f:facet> -->
+    
+	<h:form id="formularioEdicion">	
+		<table align="center" width="800px">
+			<tr>
+				<td>
+				<table align="center">
+					<tr>
+						<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold"><h:commandButton type="submit" value="#{et.btn_guardar}" action="#{preparacionesOfertaBB.insertar}" styleClass="#{preparacionOferta.prof_codigo!=0 ? 'invisible' : 'visible'}"/></td>
+						<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold"><h:commandButton type="submit" value="#{et.btn_modificar}" action="#{preparacionesOfertaBB.modificar}" styleClass="#{preparacionOferta.prof_codigo==0 ? 'invisible' : 'visible'}"/></td>
+						<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold" class="#{preparacionOferta.prof_codigo==0 ? 'invisible' : 'visible'}">
+							<a4j:commandButton style="cursor: pointer; font-weight: bold;"
+								value="#{et.btn_eliminar}"
+								action="#{preparacionesOfertaBB.borrar}"
+								onclick="if (!confirm('#{et.lbl_confirmacionEliminarPreparacionOferta}')){return false;}">						
+							</a4j:commandButton>
+						</td>												
+						<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold"><h:commandButton type="submit" value="#{et.btn_cancelar}" action="#{preparacionesOfertaBB.cancelar}" immediate="true"/></td>
+					</tr>								
+				</table>
+				</td>
+			</tr>			
+			<tr>
+				<td>
+				<table>
+					<tr>
+						<td colspan="2"><h:outputLabel value="#{preparacionesOfertaBB.estado}" styleClass="ancho100porc letraCentro letraColorRed letraNegrita"/></td>
+					</tr>					
+					<tr>
+						<td>
+							<h:outputLabel for="prof_equipo" value="#{et.lbl_equipo}" styleClass="letraColorNavy margenDerecho10px letraDerecha ancho80px letraNegrita" />
+							<h:inputText id="prof_equipo" value="#{preparacionOferta.prof_equipo}" styleClass="ancho200px" required="true"/>
+							<h:message for="prof_equipo" styleClass="letraColorRed letraNegrita"/>
+						</td>
+						<td>
+							<h:outputLabel for="uO" value="#{et.lbl_uO}" styleClass="letraColorNavy margenDerecho10px letraDerecha ancho80px letraNegrita" />
+							<h:selectOneMenu id="uO" value="#{preparacionOferta.uo.uO_codigo}" 
+										styleClass="ancho100px margenDerecho10px" required="true">
+								<f:selectItems value="#{uOsBB.listaUOsSI}"/>						
+							</h:selectOneMenu>
+							<h:message for="uO" styleClass="letraColorRed letraNegrita"/>
+						</td>									
+					</tr>										
+				</table>
+				</td>
+			</tr>			
+		</table>
+	</h:form>
+	</rich:modalPanel>  
+</body>  
+</html>

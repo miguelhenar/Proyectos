@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:rich="http://richfaces.org/rich"
+	  xmlns:a4j="http://richfaces.org/a4j">
+<head>
+	<script type="text/javascript" language="javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/manejoTablas.js">  </script>	
+</head>	
+<body onload="colorearTabla('tablaBusqueda','formulario:id')">
+
+
+	<!-- TABLA CON RICH FACES		 -->
+	<h:form id="formulario">
+		<table align="center">			
+			<tr> 
+				<td>
+					<h:commandLink id="nuevoUsuario" value="#{et.lbl_crear}" action="#{usuariosBB.nuevo}" style="width: 0px;"/>
+				</td>
+			</tr>
+			<tr>
+	     		<td>
+					<table>
+						<tr>
+				     		<td width="250px">
+								<h:outputText value="#{et.lbl_agencia}" styleClass="letraSizeSmall letraColorNavy ancho100px margenDerecho10px"/>
+								<h:selectOneMenu id="filtroAgenciaOperador" value="#{usuariosDT.filtroAgenciaOperador}" styleClass="ancho75px">
+										<f:selectItems value="#{operadoresDT.listaOperadoresTextoSI}"/>
+								</h:selectOneMenu>							
+						  		<h:inputText value="#{usuariosDT.filtroAgencia}" styleClass="letraNegrita ancho100px" id="filtroAgencia">
+						   			<a4j:support event="onkeyup" ignoreDupResponses="true"
+							 		requestDelay="700" reRender="tablaBusqueda" />
+								</h:inputText>						  		
+							</td>		
+							<td width="350px">
+								<h:outputText value="#{et.lbl_usuario}" styleClass="letraSizeSmall letraColorNavy ancho100px margenDerecho10px"/>
+						  		<h:selectOneMenu id="filtroNombreOperador" value="#{usuariosDT.filtroNombreOperador}" styleClass="ancho75px">
+										<f:selectItems value="#{operadoresDT.listaOperadoresTextoSI}"/>
+								</h:selectOneMenu>
+						  		<h:inputText value="#{usuariosDT.filtroNombre}" styleClass="letraNegrita ancho200px" id="filtroNombre">
+						   			<a4j:support event="onkeyup" ignoreDupResponses="true"
+							 		requestDelay="700" reRender="tablaBusqueda" />
+								</h:inputText>
+							</td>
+							<td width="250px">
+								<h:outputText value="#{et.lbl_rol}" styleClass="letraSizeSmall letraColorNavy ancho100px margenDerecho10px"/>
+								<h:selectOneMenu id="filtroRolOperador" value="#{usuariosDT.filtroRolOperador}" styleClass="ancho75px">
+										<f:selectItems value="#{operadoresDT.listaOperadoresTextoSI}"/>
+								</h:selectOneMenu>							
+						  		<h:inputText value="#{usuariosDT.filtroRol}" styleClass="letraNegrita ancho100px" id="filtroRol">
+						   			<a4j:support event="onkeyup" ignoreDupResponses="true"
+							 		requestDelay="700" reRender="tablaBusqueda" />
+								</h:inputText>						  		
+							</td>			          
+						</tr>
+					</table>
+		
+					<h:panelGrid columns="1" columnClasses="top" width="100%" styleClass="alineacionCentro">
+			    		<rich:extendedDataTable 
+			            	value="#{usuariosBB.listaUsuarios}" var="u" id="tablaBusqueda" rows="80" reRender="ds"
+			                width="1050px" height="600px"  sortMode="single" selectionMode="single" rowClasses="oddRowColor, evenRowColor" 
+			                tableState="#{usuariosDT.tableState}" selection="#{usuariosDT.selection}">
+			                
+			                <rich:column sortable="false" id="col_modificar" width="65px"  >
+								<a4j:commandButton styleClass="sinBorde alto25 ancho25px alineacionCentro"  image="/seguro/imagenes/modificar.png"
+									style="cursor: pointer" action="#{usuariosBB.seleccionar}">
+									<f:setPropertyActionListener value="#{u.usua_codigo}" target="#{usuarioForm.usua_codigo}"/>					
+								</a4j:commandButton>
+			           		</rich:column>
+			               	               
+			               	<rich:column sortable="true" sortBy="#{u.usua_login}" id="col_login" width="80px"
+			               		filterMethod="#{usuariosDT.filtrarListado}" styleClass="letraSizeXSmall letraColorNavy"
+			                	label="#{et.lbl_login}">
+			                   	<f:facet name="header">
+			                    	<h:outputText value="#{et.lbl_login}" id="lbl_login"/>
+			                   	</f:facet>
+			                   	<h:outputText value="#{u.usua_login}" id="usua_login" styleClass="letraNegrita"/>
+			               	</rich:column>
+			               	
+			               	<rich:column sortable="true" sortBy="#{u.usua_nombre}" id="col_nombre" width="300px"
+			               		filterMethod="#{usuariosDT.filtrarListado}" styleClass="letraSizeXSmall letraColorNavy"
+			                	label="#{et.lbl_usuario}">
+			                   	<f:facet name="header">
+			                    	<h:outputText value="#{et.lbl_usuario}" id="lbl_usuario"/>
+			                   	</f:facet>
+			                   	<h:outputText value="#{u.usua_nombre}" id="usua_nombre" styleClass="letraNegrita" />
+			               	</rich:column>
+			               	
+			               	<rich:column sortable="true" sortBy="#{u.usua_agencia.agen_nombre}" id="col_agencia" width="150px"
+			               		filterMethod="#{usuariosDT.filtrarListado}" styleClass="letraSizeXSmall letraColorNavy"
+			                	label="#{et.lbl_agencia}">
+			                   	<f:facet name="header">
+			                    	<h:outputText value="#{et.lbl_agencia}" id="lbl_agencia"/>
+			                   	</f:facet>
+			                   	<h:outputText value="#{u.usua_agencia.agen_nombre}" id="agen_nombre" styleClass="letraNegrita" />
+			               	</rich:column>
+			               	
+			               	<rich:column sortable="true" sortBy="#{u.rol.rol_descripcion}" id="col_rol" width="150px"
+			               		filterMethod="#{usuariosDT.filtrarListado}" styleClass="letraSizeXSmall letraColorNavy"
+			                	label="#{et.lbl_rol}">
+			                   	<f:facet name="header">
+			                    	<h:outputText value="#{et.lbl_rol}" id="lbl_rol"/>
+			                   	</f:facet>
+			                   	<h:outputText value="#{u.usua_rol.rol_descripcion}" id="rol_descripcion" styleClass="letraNegrita"/>
+			               	</rich:column>			               					
+			               	
+			               	<f:facet name="footer">
+			                	<rich:datascroller id="ds" renderIfSinglePage="false" ajaxSingle="false"/>
+			            	</f:facet>			        		
+			            </rich:extendedDataTable>			            
+			    	</h:panelGrid>
+    			</td>
+    		</tr>
+    	</table>		
+	</h:form> 
+	
+	<rich:modalPanel id="panelEdicion" styleClass="panelEmergente" autosized="true" showWhenRendered="#{usuariosDT.panelVisible=='panelEdicion'}">
+	<f:facet name="header">
+		<h:outputText value="#{et.lbl_editar}"/>
+    </f:facet>		
+	<!--<f:facet name="controls"> -->
+    <!--        <span style="cursor:pointer" onclick="javascript:Richfaces.hideModalPanel('panelEdicion')">X</span> -->
+    <!--</f:facet> -->
+    
+	<h:form id="formularioEdicion">	
+		<table align="center" width="780px" >
+	
+			<tr>
+				<td colspan="2">
+				<table align="center">
+					<tr>
+						<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold"><h:commandButton type="submit" value="#{et.btn_guardar}" action="#{usuariosBB.insertar}" styleClass="#{usuarioForm.usua_codigo!=0 ? 'invisible' : 'visible'}"/></td>
+						<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold"><h:commandButton type="submit" value="#{et.btn_modificar}" action="#{usuariosBB.modificarUsuarioForm}" styleClass="#{usuarioForm.usua_codigo==0 ? 'invisible' : 'visible'}"/></td>
+						<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold" class="#{usuarioForm.usua_codigo==0 ? 'invisible' : 'visible'}">
+							<a4j:commandButton style="cursor: pointer; font-weight: bold;"
+								value="#{et.btn_eliminar}"
+								action="#{usuariosBB.borrar}"
+								onclick="if (!confirm('#{et.lbl_confirmacionEliminarUsuarios}')){return false;}">						
+							</a4j:commandButton>
+						</td>							
+						<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold"><h:commandButton type="submit" value="#{et.btn_cancelar}" action="#{usuariosBB.cancelar}" immediate="true"/></td>
+					</tr>								
+				</table>
+				</td>
+			</tr>			
+			<tr>
+				<td valign="top" align="left">
+				<table>
+					<tr>
+						<td colspan="2"><h:outputLabel value="#{usuariosBB.estado}" styleClass="ancho100porc letraCentro letraColorRed letraNegrita"/></td>
+					</tr>					
+					<tr>
+						<td>
+							<h:outputLabel for="usua_login" value="#{et.lbl_login}" styleClass="letraColorNavy margenDerecho10px letraDerecha ancho100px letraNegrita" />
+							<h:inputText id="usua_login" value="#{usuarioForm.usua_login}" styleClass="ancho125px" required="true"/>
+							<h:message for="usua_login" styleClass="letraColorRed letraNegrita"/>
+						</td>
+						<td>
+							<h:outputLabel for="usua_nombre" value="#{et.lbl_nombre}" styleClass="letraColorNavy margenDerecho10px letraDerecha ancho100px letraNegrita" />
+							<h:inputText id="usua_nombre" value="#{usuarioForm.usua_nombre}" styleClass="ancho200px" required="true"/>
+							<h:message for="usua_nombre" styleClass="letraColorRed letraNegrita"/>
+						</td>	
+					</tr>
+					<tr><td colspan="2" height="10px"/></tr>	
+					<tr>						
+						<td>
+							<h:outputLabel for="usua_pw" value="#{et.lbl_password}" styleClass="letraColorNavy margenDerecho10px letraDerecha ancho100px letraNegrita" />
+							<h:inputText id="usua_pw" value="#{usuarioForm.usua_pw}" styleClass="ancho125px" required="true"/>
+							<h:message for="usua_pw" styleClass="letraColorRed letraNegrita"/>
+						</td>
+						<td>
+							<h:outputLabel value="#{et.lbl_idioma}" styleClass="letraColorNavy margenDerecho10px letraDerecha ancho100px letraNegrita"/>					
+							<h:selectOneMenu id="usua_idioma" value="#{usuarioForm.usua_idioma}" styleClass="ancho150px" required="true">
+								<f:selectItem itemLabel="Español" itemValue="ES"/>
+								<f:selectItem itemLabel="English" itemValue="EN"/>
+							</h:selectOneMenu>
+							<h:message for="usua_idioma" styleClass="letraColorRed letraNegrita"/>
+						</td>
+					</tr>			
+					<tr><td colspan="2" height="10px"/></tr>	
+					<tr>						
+						<td>
+							<h:outputLabel for="usua_responsable" value="#{et.lbl_manager}" styleClass="letraColorNavy margenDerecho10px letraDerecha ancho100px letraNegrita" />
+							<h:selectOneMenu id="usua_responsable" value="#{usuarioForm.usua_responsable}"  styleClass="ancho150px" required="false">
+								<f:selectItems value="#{usuariosBB.listaResponsablesSI}"/>
+							</h:selectOneMenu>
+							<h:message for="usua_responsable" styleClass="letraColorRed letraNegrita"/>
+						</td>						
+						<td>
+							<h:outputLabel for="usua_rol" value="#{et.lbl_rol}" styleClass="letraColorNavy margenDerecho10px letraDerecha ancho100px letraNegrita" />
+							<h:selectOneMenu id="usua_rol" value="#{usuarioForm.usua_rol.rol_codigo}" styleClass="ancho150px" required="true">
+								<f:selectItems value="#{rolesBB.listaRolesSI}"/>
+							</h:selectOneMenu>
+							<h:message for="usua_rol" styleClass="letraColorRed letraNegrita"/>
+						</td>
+					</tr>
+					<tr><td colspan="2" height="10px"/></tr>
+					<tr>
+						<td>
+							<h:outputLabel for="usua_agencia" value="#{et.lbl_agencia}" styleClass="letraColorNavy margenDerecho10px letraDerecha ancho100px letraNegrita" />
+							<h:selectOneMenu id="usua_agencia" value="#{usuarioForm.usua_agencia.agen_codigo}"  styleClass="ancho150px" required="true">
+								<f:selectItems value="#{agenciasBB.listaAgenciasSI}"/>
+							</h:selectOneMenu>
+							<h:message for="usua_agencia" styleClass="letraColorRed letraNegrita"/>
+						</td>	
+						<td>
+							<h:outputLabel for="usua_dias_alerta" value="#{et.lbl_dias_alerta}" styleClass="letraColorNavy margenDerecho10px letraDerecha ancho100px letraNegrita" />
+							<h:inputText id="usua_dias_alerta" value="#{usuarioForm.usua_dias_alerta}" styleClass="ancho50px" required="true"/>
+							<h:message for="usua_dias_alerta" styleClass="letraColorRed letraNegrita"/>
+						</td>	
+					</tr>
+					
+					<tr><td colspan="2" height="10px"/></tr>		
+				</table>
+				</td>
+				<td valign="top" align="left">
+<!-- 					<h:outputLabel value="#{et.lbl_poles}" styleClass="letraColorNavy margenDerecho10px letraDerecha ancho100px letraNegrita" /> -->
+					<rich:extendedDataTable value="#{polesBB.listaPoles}"
+	            		 var="p" id="tablaPoles" rows="10" reRender="ds"
+	                	width="140px" height="300px"  sortMode="single" selectionMode="single" rowClasses="oddRowColor, evenRowColor" >
+	                
+	                	<rich:column sortable="false" id="col_marcar" width="35px" >
+							<h:selectBooleanCheckbox id="checkPole" 
+								value="#{usuariosBB.selectedPoles[p.pole_codigo]}" styleClass="sinBorde">
+							</h:selectBooleanCheckbox>
+							
+		           		</rich:column>
+		               	             
+		               	<rich:column sortable="true" sortBy="#{p.pole_nombre}" id="col_pole" width="100px"
+		               		styleClass="letraSizeXSmall letraColorNavy" label="#{et.lbl_poles}">
+		                   	<f:facet name="header">
+		                    	<h:outputText value="#{et.lbl_poles}"/>
+		                   	</f:facet>
+		                   	<h:outputText value="#{p.pole_nombre}" id="pole_nombre" styleClass="letraNegrita"/>
+		               	</rich:column>
+		               	<f:facet name="footer">
+		                	<rich:datascroller id="ds" renderIfSinglePage="false" ajaxSingle="false"/>
+		            	</f:facet>			        		
+		            </rich:extendedDataTable>
+				</td>
+			</tr>			
+		</table>
+	</h:form>
+	</rich:modalPanel>  
+</body>  
+</html>

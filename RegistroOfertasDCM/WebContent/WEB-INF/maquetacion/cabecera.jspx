@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich">
+    <head>    
+    	<style>
+		    .barraMenu_pic {
+		        margin-bottom: -4px;
+		        margin-right: 2px;
+		    }
+		    .barraMenu_search .barraMenu_rich-menu-item-hover{
+		        background-color: transparent;
+		        border-color: transparent;
+		    }
+		</style>
+	</head>
+	<body >	
+		<h:form>
+			<table  cellpadding="0" cellspacing="0" width="100%">
+				<tr>	
+					<td width="10%"></td>
+					<td width="30%"> </td>
+					<td width="43%" ></td>
+					<td ></td>
+					
+				</tr>
+<!-- 						<table width="100%" style="height: 100%"> -->
+<!-- 							<tr> -->
+<!--  								<td> -->
+<!--  									<h:graphicImage value="/seguro/imagenes/ImagenCabecera.jpg" -->
+<!--  										style="width:40px; height:40px;" styleClass="sinBorde ancho40px alto40px"> -->
+<!-- 										</h:graphicImage> -->
+<!--  								</td> -->
+<!-- 							</tr>							 -->
+<!-- 						</table> -->
+				<tr>
+					<td valign="middle">
+
+					</td>
+					<td>
+						<h:outputLabel styleClass="letraSizeXLarge letraIzquierda">#{et.nombre_web}</h:outputLabel>
+					</td>
+					<td>
+						<h:outputLabel styleClass="letraSizeXLarge letraIzquierda ancho95porc">#{permisosMenuBB.tituloFormularioActual}</h:outputLabel>																							
+					</td>
+						
+					<td align="right" style="padding-right: 5px;" width="100%">								
+						<h:commandButton style="width:40px; height:40px; padding-right: 5px;" styleClass="sinBorde ancho40px alto40px" image="/seguro/imagenes/BanderaEspanyaRedondaSinFondo.png" action="#{permisosMenuBB.abrirPagina}">
+							<f:setPropertyActionListener value="es" target="#{usuario.usua_idioma}" />
+						</h:commandButton>
+						<b>&nbsp;</b>
+						<h:commandButton style="width:40px; height:40px" styleClass="sinBorde ancho40px alto40px" image="/seguro/imagenes/BanderaGranBretanyaRedondaSinFondo.png" action="#{permisosMenuBB.abrirPagina}">
+							<f:setPropertyActionListener value="en" target="#{usuario.usua_idioma}"/>
+						</h:commandButton>			
+						<b>&nbsp;</b>
+						<h:commandButton style="width:40px; height:40px" styleClass="sinBorde ancho40px alto40px " image="/seguro/imagenes/SalirRojoSinFondo.png" action="#{usuariosBB.deslogar}"/>
+					</td>				
+				</tr>
+	        </table>
+	        <ui:include src="/WEB-INF/maquetacion/migasDePan.jspx"/>
+		</h:form>					
+	</body>
+</html>	 

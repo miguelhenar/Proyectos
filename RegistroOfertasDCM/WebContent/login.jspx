@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<head>
+	<title><h:outputText value="#{et.nombre_web}" /></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		
+<style>
+
+INPUT {
+	FONT: 8pt verdana;
+	COLOR: #4A4540;
+}
+
+input[type=submit] {
+		font-weight:bold;
+		color: navy;
+		cursor:pointer;	
+	}
+	
+TABLE {
+	FONT: 8pt verdana;
+	COLOR: #6a737b;
+}
+
+BODY {
+	FONT: 8pt verdana;
+	COLOR: #6a737b;
+}
+
+A {
+	FONT: 11px verdana;
+	COLOR: #4A4540;
+}
+
+A:HOVER {
+	TEXT-DECORATION: none;
+}
+
+a.copy {
+	FONT: 7pt verdana;
+	COLOR: #6a737b;
+	TEXT-DECORATION: underline;
+}
+
+a.copy:hover {
+	text-decoration: none;
+}
+
+</style>
+
+<link rel="stylesheet" 
+	  type="text/css" 
+	  href="#{facesContext.externalContext.requestContextPath}/css/estilos.css"/>
+        
+</head>
+
+<body onload="document.getElementById('formulario:login').focus()" class="divFondo">
+	<table cellpadding="0" cellspacing="0" width="100%" border="0" style="margin-bottom:0px;  height: 640px; 
+			background-image: url(#{facesContext.externalContext.requestContextPath}/seguro/imagenes/login/LineaVerticalAzulDegradado.png);">
+		<tr>						
+			<td>
+				<table width="100%" style="height:100px;">				
+					<tr align="center" style=" 
+							background-image:url(#{facesContext.externalContext.requestContextPath}/seguro/imagenes/login/RayasEncabezadoTransparente.png);
+							background-repeat:repeat-x;background-position:bottom; height : 50px;">
+						<td width="30%" align="left"><h:graphicImage value="/seguro/imagenes/login/LogoGefcoTransaparente.png" alt=""/></td>						
+						<td width="70%" align="right" style="padding-right: 10px">
+							<h:commandButton style="width:55px; height:55px" styleClass="sinBorde ancho55px alto55px" image="/seguro/imagenes/BanderaEspanyaRedondaSinFondo.png" />							
+							<b>&nbsp;</b>
+							<h:commandButton style="width:55px; height:55px" styleClass="sinBorde ancho55px alto55px" image="/seguro/imagenes/BanderaGranBretanyaRedondaSinFondo.png">
+							</h:commandButton>			
+							<b>&nbsp;</b>
+							<h:commandButton style="width:55px; height:55px" styleClass="sinBorde ancho55px alto55px" image="/seguro/imagenes/BanderaFranciaRedondaSinFondo.png">
+							</h:commandButton>			
+							<b>&nbsp;</b>
+							<h:commandButton style="width:55px; height:55px" styleClass="sinBorde ancho55px alto55px " image="/seguro/imagenes/BanderaRusiaRedondaSinFondo.png">
+							</h:commandButton>								
+						</td>			
+					</tr>													
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<br/><br/>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<table width="50%" border="3" style="background-color: white; height: 300px">
+					<tr style="display: none;">
+						<td width="30%"/>
+						<td width="70%"/>
+					</tr>
+					<tr style="background-color: #00096C">
+						<td colspan="2">
+							<h:outputLabel styleClass="letraColorWhite letraSizeXXLarge tipoLetra1 paddingIzq10px" value="#{et.nombre_web}"/>
+						</td>
+					</tr>
+					<tr>
+						<td style="border: none;">
+							<h:graphicImage value="/seguro/imagenes/login/Login.jpg" height="180" alt="" style=" width : 180px; margin-left: 20px"/>
+						</td>
+						<td style="border: none; PADDING-RIGHT: 14px; PADDING-LEFT: 13px; PADDING-TOP: 2px" width="100%">
+							<table cellpadding="0" cellspacing="0" bgcolor="#ffffff" width="300" align="center">
+								<tr>
+									<td><h:graphicImage value="/seguro/imagenes/login/tbl_2_lt.gif"
+										width="7" height="6" alt="" /></td>
+									<td
+										style="background-image: url(#{facesContext.externalContext.requestContextPath}/seguro/imagenes/login/tbl_2_mt.gif)"></td>
+									<td><h:graphicImage value="/seguro/imagenes/login/tbl_2_rt.gif"
+										width="7" height="6" alt="" /></td>
+								</tr>
+								<tr>
+									<td
+										style="background-image: url(#{facesContext.externalContext.requestContextPath}/seguro/imagenes/login/tbl_2_lm.gif)"></td>
+									<td
+										style="padding-right: 5px; padding-left: 5px; padding-bottom: 5px; width: 100%">
+									<div id="divLogo">
+									<table width="340 px" cellspacing="0"
+										cellpadding="0" align="center">
+										<tr>
+											<td align="center"><span id="lblLogo">B I E	N V E N I D O</span></td>
+										</tr>
+										<tr>
+											<td align="center"></td>
+										</tr>
+										<tr>
+											<td align="center"><h:graphicImage value="/seguro/imagenes/login/4248_2px_divider.gif"
+												style="height: 2px; width: 100%; border-width: 0px;" />
+											</td>
+										</tr>
+									</table>
+									</div>
+									</td>
+									<td
+										style="background-image: url(#{facesContext.externalContext.requestContextPath}/seguro/imagenes/login/tbl_2_rm.gif)"></td>
+								</tr>
+								<tr>
+									<td
+										style="background-image: url(#{facesContext.externalContext.requestContextPath}/seguro/imagenes/login/tbl_2_lm.gif)"></td>
+									<td
+										style="padding-right: 5px; padding-left: 5px; padding-bottom: 5px"
+										align="left">
+									<h:form id="formulario">
+									<table cellpadding="0" cellspacing="0" bgcolor="#dfe3e4"
+										width="100%">
+										<tr>
+											<td><h:graphicImage value="/seguro/imagenes/login/tbl_3_lt.gif"
+												width="7" height="6" alt="" /></td>
+											<td
+												style="background-image: url(#{facesContext.externalContext.requestContextPath}/seguro/imagenes/login/tbl_3_mt.gif); WIDTH: 100%"></td>
+											<td><h:graphicImage value="/seguro/imagenes/login/tbl_3_rt.gif"
+												width="7" height="6" alt="" /></td>
+										</tr>
+										<tr>
+											<td
+												style="background-image: url(#{facesContext.externalContext.requestContextPath}/seguro/imagenes/login/tbl_3_lm.gif)"></td>
+											<td align="center">
+											<table border="0">
+												<tr>
+													<td align="right"><span id="LblUserName"
+														style="FONT-WEIGHT: bold">Usuario :</span></td>
+													<td align="left"><h:inputText id="login" value="#{usuario.usua_login}" />
+													</td>
+												</tr>
+												<tr>
+													<td align="right"><span id="LblPassword"
+														style="FONT-WEIGHT: bold">Password :</span></td>
+													<td align="left"><h:inputSecret value="#{usuario.usua_pw}" /></td>
+												</tr>
+												<tr>
+													<td></td>
+													<td align="center"><h:commandButton style="width: 80 %;"
+														value="Entrar" action="#{usuariosBB.logar}" /></td>
+												</tr>
+												<tr>
+													<td align="center"></td>
+													<td align="right"></td>
+												</tr>
+											</table>
+											</td>
+											<td
+												style="background-image: url(#{facesContext.externalContext.requestContextPath}/seguro/imagenes/login/tbl_3_rm.gif)"></td>
+										</tr>
+										<tr>
+											<td><h:graphicImage value="/seguro/imagenes/login/tbl_3_lb.gif"
+												width="7" height="6" alt="" /></td>
+											<td
+												style="background-image: url(#{facesContext.externalContext.requestContextPath}/seguro/imagenes/login/tbl_3_mb.gif)"></td>
+											<td><h:graphicImage value="/seguro/imagenes/login/tbl_3_rb.gif"
+												width="7" height="6" alt="" /></td>
+										</tr>
+									</table>
+									</h:form>
+									</td>
+									<td
+										style="background-image: url(#{facesContext.externalContext.requestContextPath}/seguro/imagenes/login/tbl_2_rm.gif)"></td>
+								</tr>
+								<tr>
+									<td><h:graphicImage value="/seguro/imagenes/login/tbl_2_lb.gif"
+										width="7" height="6" alt="" /></td>
+									<td
+										style="background-image: url(#{facesContext.externalContext.requestContextPath}/seguro/imagenes/login/tbl_2_mb.gif)"></td>
+									<td><h:graphicImage value="/seguro/imagenes/login/tbl_2_rb.gif"
+										width="7" height="6" alt="" /></td>
+								</tr>
+							</table>						
+						</td>					
+					</tr>
+				</table>
+			</td>
+		</tr>											
+		<tr style="height: 50px"></tr>
+	</table>											
+</body>
+</html>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"  
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:a4j="http://richfaces.org/a4j">  
+<head>
+	<script type="text/javascript" language="javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/manejoTablas.js">  </script>	
+</head>	
+<body onload="colorearTabla('tablaBusqueda','formulario:madu_codigo')">
+	<h:form id="formulario">
+		<div style="height: 2px"/>							
+		<table align="center" width="380px" style="border-color: black;border-style: double; border-width: 1">
+			<tr>
+				<td style="padding-top: 10px; padding-bottom: 10px; padding-left: 12px; font-weight: bold"><h:commandButton type="submit" value="#{et.btn_nuevo}" action="#{maduracionesBB.vaciar}" disabled="#{maduracion.madu_codigo==0}"/></td>
+				<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold"><h:commandButton type="submit" value="#{et.btn_guardar}" action="#{maduracionesBB.insertar}" disabled="#{maduracion.madu_codigo!=0}"/></td>
+				<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold"><h:commandButton type="submit" value="#{et.btn_modificar}" action="#{maduracionesBB.modificar}" disabled="#{maduracion.madu_codigo==0}"/></td>
+				<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold">
+					<a4j:commandButton style="cursor: pointer; font-weight: bold;"
+						value="#{et.btn_eliminar}"
+						action="#{maduracionesBB.borrar}"
+						disabled="#{maduracion.madu_codigo==0}"
+						reRender="estado"
+						onclick="if (!confirm('#{et.lbl_confirmacionEliminarMaduracion}')){return false;}">						
+					</a4j:commandButton>	
+					<h:commandLink id="recuperarDeBB" value="" action="#{maduracionesBB.seleccionar}" style="width: 0px;"/>
+				</td>
+			</tr>
+			<tr> 
+				<td><h:inputHidden id="madu_codigo" value="#{maduracion.madu_codigo}"/></td>
+			</tr>
+			<tr>
+				<td colspan="4"><h:outputLabel id="estado" value="#{maduracionesBB.estado}" styleClass="lblAviso"/></td>
+			</tr>
+		</table>			
+		
+		<table align="center" width="380px" style="border-color: black;border-style: double; border-width: 1;margin-top: 30px">
+			<tr>
+				<td colspan="4" style="padding-top: 10px">
+					<h:outputLabel for="madu_nombre" value="#{et.lbl_maduracion}"  styleClass="lblTituloCampoFormularioSmallBold paddingDer10px paddingIzq10px"/>
+					<h:inputText id="madu_nombre" value="#{maduracion.madu_nombre}" styleClass="txtMediano"/>					
+				</td>			
+			</tr>		
+			<tr>
+			</tr>
+			<tr>	
+				<td colspan="4">	
+				</td>
+			</tr>
+		</table>
+		
+		
+		<table align="center" class="altRowsTable" id="tablaBusqueda" style="margin-top: 30px">
+			<tr style="background-color: #CCFFAA">	
+				<td><t:outputText value="#{et.lbl_codigo}"  styleClass="letraSizeMedium ancho50px letraColorBlack letraNegrita"/></td>			
+				<td><t:outputText value="#{et.lbl_maduracion}"  styleClass="letraSizeMedium letraColorBlack ancho250px letraNegrita"/></td>		
+			</tr>
+			
+			<c:forEach items="#{maduracionesBB.listaMaduraciones}" var="m">
+				<tr onclick="marcar(this,'formulario:madu_codigo','formulario:recuperarDeBB')"  style="cursor: pointer;">					
+					<td class="letraCentro"><t:outputText value="#{m.madu_codigo}" styleClass="letraSizeMedium letraColorBlack"/></td>
+					<td width="300"><t:outputText value="#{m.madu_nombre}" styleClass="letraSizeMedium letraColorNavy"/></td>				
+				</tr>
+			</c:forEach>
+		</table>		
+	</h:form>
+</body>     
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:a4j="http://richfaces.org/a4j">  
+
+<head>
+	<script type="text/javascript" language="javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/manejoTablas.js">  </script>	
+</head>	
+<body onload="colorearTabla('tablaBusqueda','formulario:mope_codigo')">
+	<h:form id="formulario">
+		<div style="height: 2px"/>				
+		<table align="center" width="380px" style="border-color: black;border-style: double; border-width: 1">
+			<tr>
+				<td style="padding-top: 10px; padding-bottom: 10px; padding-left: 12px; font-weight: bold"><h:commandButton type="submit" value="#{et.btn_nuevo}" action="#{motivosPerdidaBB.vaciar}" disabled="#{motivoPerdida.mope_codigo==0}"/></td>
+				<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold"><h:commandButton type="submit" value="#{et.btn_guardar}" action="#{motivosPerdidaBB.insertar}" disabled="#{motivoPerdida.mope_codigo!=0}"/></td>
+				<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold"><h:commandButton type="submit" value="#{et.btn_modificar}" action="#{motivosPerdidaBB.modificar}" disabled="#{motivoPerdida.mope_codigo==0}"/></td>
+				<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold">
+					<a4j:commandButton style="cursor: pointer; font-weight: bold;"
+						value="#{et.btn_eliminar}"
+						action="#{motivosPerdidaBB.borrar}"
+						disabled="#{motivoPerdida.mope_codigo==0}"
+						reRender="estado"
+						onclick="if (!confirm('#{et.lbl_confirmacionEliminarMotivoPerdida}')){return false;}">						
+					</a4j:commandButton>	
+					<h:commandLink id="recuperarDeBB" value="" action="#{motivosPerdidaBB.seleccionar}" style="width: 0px;"/>
+				</td>
+			</tr>
+			<tr> 
+				<td><h:inputHidden id="mope_codigo" value="#{motivoPerdida.mope_codigo}"/></td>
+			</tr>
+			<tr>
+				<td colspan="4"><h:outputLabel id="estado" value="#{motivosPerdidaBB.estado}" styleClass="lblAviso"/></td>
+			</tr>
+		</table>
+		<table align="center" width="400px" style="border-color: black;border-style: double; border-width: 1;margin-top: 30px">
+			<tr>
+				<td colspan="4" style="padding-top: 10px">
+					<h:outputLabel for="mope_nombre" value="#{et.lbl_motivo_perdida}" styleClass="lblTitulo letraNegrita ancho150px"/>
+					<h:inputText id="mope_nombre" value="#{motivoPerdida.mope_nombre}" styleClass="txtMediano ancho200px">
+					</h:inputText>
+				</td>			
+			</tr>		
+			
+		</table>
+		
+		<table align="center" class="altRowsTable" id="tablaBusqueda" style="margin-top: 30px">
+			<tr style="background-color: #CCFFAA">	
+				<td><t:outputText value="#{et.lbl_codigo}"  styleClass="letraSizeMedium ancho50px letraColorBlack letraNegrita"/></td>			
+				<td><t:outputText value="#{et.lbl_motivo_perdida}"  styleClass="letraSizeMedium ancho250px letraColorBlack letraNegrita"/></td>		
+			</tr>
+			
+			<c:forEach items="#{motivosPerdidaBB.listaMotivosPerdida}" var="m">
+				<tr onclick="marcar(this,'formulario:mope_codigo','formulario:recuperarDeBB')"  style="cursor: pointer;">					
+					<td class="letraCentro"><t:outputText value="#{m.mope_codigo}" styleClass="letraSizeMedium letraColorBlack"/></td>
+					<td width="300"><t:outputText value="#{m.mope_nombre}" styleClass="letraSizeMedium letraColorNavy"/></td>				
+				</tr>
+			</c:forEach>
+		</table>		
+	</h:form>  
+</body>   
+</html>

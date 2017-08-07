@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:c="http://java.sun.com/jstl/core" >
+    <head>
+    	<style>
+		    .barraMenu_pic {
+		        margin-bottom: -4px;
+		        margin-right: 2px;
+		    }
+		    .barraMenu_search .barraMenu_rich-menu-item-hover{
+		        background-color: transparent;
+		        border-color: transparent;
+		    }
+		</style>
+	</head>
+	<body >	
+		<h:form>
+			<table  cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-TOP: 0px" width="100%" valign="top">
+					<rich:toolBar>	                        
+		            <rich:dropDownMenu>
+		            	<f:facet name="label"> 
+			                <h:panelGrid cellpadding="0" cellspacing="0" columns="2"
+		                        style="vertical-align:middle" width="200px">
+		                        <rich:menuItem submitMode="server" value="#{et.menu_inicial}" action="#{permisosMenuBB.abrirPagina}">
+		                	<f:setPropertyActionListener value="inicial" target="#{permisosMenuBB.opSeleccionada}"/>
+		                	</rich:menuItem>
+			             	</h:panelGrid>
+		                </f:facet> 	            	
+		            </rich:dropDownMenu>
+					<rich:dropDownMenu>
+		            	<f:facet name="label"> 
+			                <h:panelGrid cellpadding="0" cellspacing="0" columns="2"
+		                        style="vertical-align:middle" width="200px">
+		                        <rich:menuItem submitMode="server" value="#{et.menu_listado_ofertas}" action="#{permisosMenuBB.abrirPagina}">
+		                	<f:setPropertyActionListener value="listadoOfertas" target="#{permisosMenuBB.opSeleccionada}"/>
+		                	</rich:menuItem>
+			             	</h:panelGrid>
+		                </f:facet> 	            	
+		            </rich:dropDownMenu>
+					<rich:dropDownMenu>
+		            	<f:facet name="label"> 
+			                <h:panelGrid cellpadding="0" cellspacing="0" columns="2"
+		                        style="vertical-align:middle" width="200px">
+		                        <rich:menuItem submitMode="server" value="#{et.menu_alertas}" action="#{permisosMenuBB.abrirPagina}">
+		                	<f:setPropertyActionListener value="listadoAlertas" target="#{permisosMenuBB.opSeleccionada}"/>
+		                	</rich:menuItem>
+			             	</h:panelGrid>
+		                </f:facet> 	            	
+		            </rich:dropDownMenu>
+					<rich:dropDownMenu>
+		                <f:facet name="label"> 
+			                <h:panelGrid cellpadding="0" cellspacing="0" columns="2"
+		                        style="vertical-align:middle">
+		                        <h:outputText value="#{et.menu_administracion}" />
+			             	</h:panelGrid>
+		                </f:facet>              
+		            	
+		            	<rich:menuItem submitMode="server" value="#{et.menu_usuario}" action="#{permisosMenuBB.abrirPagina}" 
+		                	disabled="#{!permisosMenuBB.admin_usuario}">
+		                	<f:setPropertyActionListener value="usuario" target="#{permisosMenuBB.opSeleccionada}"/>
+		                </rich:menuItem>
+		                
+		                <rich:menuItem submitMode="server" value="#{et.menu_fuentes}" action="#{permisosMenuBB.abrirPagina}" 
+		                	disabled="#{!permisosMenuBB.fuentes}">
+		                	<f:setPropertyActionListener value="fuentes" target="#{permisosMenuBB.opSeleccionada}"/>
+		                </rich:menuItem>
+		                
+		                <rich:menuItem submitMode="server" value="#{et.menu_maduraciones}" action="#{permisosMenuBB.abrirPagina}" 
+		                	disabled="#{!permisosMenuBB.maduraciones}">
+		                	<f:setPropertyActionListener value="maduraciones" target="#{permisosMenuBB.opSeleccionada}"/>
+		                </rich:menuItem>
+		                
+		                <rich:menuItem submitMode="server" value="#{et.menu_motivosPerdida}" action="#{permisosMenuBB.abrirPagina}" 
+		                	disabled="#{!permisosMenuBB.motivosPerdida}">
+		                	<f:setPropertyActionListener value="motivosPerdida" target="#{permisosMenuBB.opSeleccionada}"/>
+		                </rich:menuItem>
+		                
+		                <rich:menuItem submitMode="server" value="#{et.menu_poles}" action="#{permisosMenuBB.abrirPagina}" 
+		                	disabled="#{!permisosMenuBB.poles}">
+		                	<f:setPropertyActionListener value="poles" target="#{permisosMenuBB.opSeleccionada}"/>
+		                </rich:menuItem>
+		                
+		                <rich:menuItem submitMode="server" value="#{et.menu_preparacionesOferta}" action="#{permisosMenuBB.abrirPagina}" 
+		                	disabled="#{!permisosMenuBB.preparacionesOferta}">
+		                	<f:setPropertyActionListener value="preparacionesOferta" target="#{permisosMenuBB.opSeleccionada}"/>
+		                </rich:menuItem>
+		                
+		                <rich:menuItem submitMode="server" value="#{et.menu_tiposOferta}" action="#{permisosMenuBB.abrirPagina}" 
+		                	disabled="#{!permisosMenuBB.motivosPerdida}">
+		                	<f:setPropertyActionListener value="tiposOferta" target="#{permisosMenuBB.opSeleccionada}"/>
+		                </rich:menuItem>
+		                
+		                 <rich:menuItem submitMode="server" value="#{et.menu_uOs}" action="#{permisosMenuBB.abrirPagina}" 
+		                	disabled="#{!permisosMenuBB.uOs}">
+		                	<f:setPropertyActionListener value="uOs" target="#{permisosMenuBB.opSeleccionada}"/>
+		                </rich:menuItem>
+		                
+		                 <rich:menuItem submitMode="server" value="#{et.menu_usuarios}" action="#{permisosMenuBB.abrirPagina}" 
+		                	disabled="#{!permisosMenuBB.usuarios}">
+		                	<f:setPropertyActionListener value="usuarios" target="#{permisosMenuBB.opSeleccionada}"/>
+		                </rich:menuItem>
+		     		</rich:dropDownMenu>	            
+	        	</rich:toolBar>
+	        </td></tr>
+	        </table>
+		</h:form>
+	</body>
+</html>

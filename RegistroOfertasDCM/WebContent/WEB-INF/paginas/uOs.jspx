@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:a4j="http://richfaces.org/a4j">  
+<head>
+	<script type="text/javascript" language="javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/manejoTablas.js">  </script>	
+</head>	
+<body onload="colorearTabla('tablaBusqueda','formulario:uO_codigo')">
+	<h:form id="formulario">
+		<div style="height: 2px"/>				
+		<table align="center" width="380px" style="border-color: black;border-style: double; border-width: 1">
+			<tr>
+				<td style="padding-top: 10px; padding-bottom: 10px; padding-left: 12px; font-weight: bold"><h:commandButton type="submit" value="#{et.btn_nuevo}" action="#{uOsBB.vaciar}" disabled="#{uO.uO_codigo==0}"/></td>
+				<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold"><h:commandButton type="submit" value="#{et.btn_guardar}" action="#{uOsBB.insertar}" disabled="#{uO.uO_codigo!=0}"/></td>
+				<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold"><h:commandButton type="submit" value="#{et.btn_modificar}" action="#{uOsBB.modificar}" disabled="#{uO.uO_codigo==0}"/></td>
+				<td style="padding-top: 10px; padding-bottom: 10px; font-weight: bold">
+					<a4j:commandButton style="cursor: pointer; font-weight: bold;"
+						value="#{et.btn_eliminar}"
+						action="#{uOsBB.borrar}"
+						disabled="#{uO.uO_codigo==0}"
+						reRender="estado"
+						onclick="if (!confirm('#{et.lbl_confirmacionEliminarUO}')){return false;}">						
+					</a4j:commandButton>
+					<h:commandLink id="recuperarDeBB" value="" action="#{uOsBB.seleccionar}" style="width: 0px;"/>
+				</td>
+			</tr>
+			<tr> 
+				<td><h:inputHidden id="uO_codigo" value="#{uO.uO_codigo}"/></td>
+			</tr>
+			<tr>
+				<td colspan="4"><h:outputLabel id="estado" value="#{uOsBB.estado}" styleClass="lblAviso"/></td>
+			</tr>
+		</table>
+		<table align="center" width="380px" style="border-color: black;border-style: double; border-width: 1;margin-top: 30px">
+			<tr>
+				<td colspan="4" style="padding-top: 10px">
+					<h:outputLabel for="uO_nombre" value="#{et.lbl_uO}"  styleClass="lblTituloCampoFormularioSmallBold"/>
+					<h:inputText id="uO_nombre" value="#{uO.uO_nombre}" styleClass="txtMediano"/>
+				</td>			
+			</tr>				
+		</table>
+		
+		<table align="center" class="altRowsTable" id="tablaBusqueda" style="margin-top: 30px">
+			<tr style="background-color: #CCFFAA">	
+				<td><t:outputText value="#{et.lbl_codigo}"  styleClass="letraSizeMedium ancho50px letraColorBlack letraNegrita"/></td>			
+				<td><t:outputText value="#{et.lbl_uO}"  styleClass="letraSizeMedium ancho250px letraColorBlack letraNegrita"/></td>		
+			</tr>
+			
+			<c:forEach items="#{uOsBB.listaUOs}" var="uo">
+				<tr onclick="marcar(this,'formulario:uO_codigo','formulario:recuperarDeBB')"  style="cursor: pointer;">					
+					<td class="letraCentro"><t:outputText value="#{uo.uO_codigo}" styleClass="letraSizeMedium letraColorBlack"/></td>
+					<td width="200px"><t:outputText value="#{uo.uO_nombre}" styleClass="letraSizeMedium letraColorNavy"/></td>				
+				</tr>
+			</c:forEach>
+		</table>			
+	</h:form>     
+</body>
+</html>
