@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core">    
+     
+	<ui:composition template="/WEB-INF/maquetacion/plantillaUnaColumna.jspx">
+	
+		<ui:define name="cabecera">
+			<ui:include src="/WEB-INF/maquetacion/cabecera.jspx"/>
+		</ui:define>
+
+		<ui:define name="menu">
+			<ui:include src="/WEB-INF/maquetacion/menu.jspx"/>
+		</ui:define>
+
+		<ui:define name="principal">
+			<ui:include src="/WEB-INF/paginas/usuario.jspx"/>
+		</ui:define>
+
+		<ui:define name="pie">
+			<ui:include src="/WEB-INF/maquetacion/pie.jspx"/>
+		</ui:define>
+	
+	</ui:composition>
+            
+</html>
+
+
+
+
